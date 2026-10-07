@@ -126,14 +126,66 @@ footer .bot{grid-column:1/-1;border-top:1px solid #3A4647;padding-top:20px;margi
  .inst{padding:48px 0}.inst .wrap{grid-template-columns:1fr;gap:28px}
  footer .wrap{grid-template-columns:1fr 1fr;gap:28px}footer .bot{flex-direction:column;gap:6px}
 }
-</style></head><body>
 
+/* ===== secciones comunes (orden nuevo) ===== */
+.sx{--i:var(--ink);--i2:var(--ink2);--i3:var(--ink3);--ln:var(--line);--sf:#fff;--a:var(--verde);--a2:var(--turq);--r:8px;color:var(--i);padding:96px 0}
+.sx-1{background:#fff}.sx-1b{background:var(--soft)}.sx-1c{background:#fff}.sx-2{background:var(--soft)}.sx-3{background:#fff}
+.sx-1{padding-bottom:60px}.sx-1b,.sx-1c{padding:70px 0}
+.sx-wrap{max-width:1280px;margin:0 auto;padding:0 36px}
+.sx-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--a)}
+.sx-eyebrow::before{content:"";width:22px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--a),var(--a2))}
+.sx-title{font-family:"Encode Sans",system-ui,sans-serif;font-weight:800;text-transform:none;font-size:clamp(30px,3.6vw,50px);letter-spacing:-.025em;line-height:1.04;margin:12px 0 0;color:var(--i)}
+.sx-lead{font-size:18px;color:var(--i2);max-width:620px;margin:16px 0 0}
+.sx-head{margin-bottom:40px}.sx-head--row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.sx-counters{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sx-k{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:26px 24px 22px;position:relative;overflow:hidden}
+.sx-k::after{content:"";position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50% 50% 50% 0;background:var(--a);opacity:.12}
+.sx-k b{display:block;font-family:"Encode Sans",system-ui,sans-serif;font-weight:800;font-size:52px;letter-spacing:-.04em;line-height:1;color:var(--i);font-variant-numeric:tabular-nums}
+.sx-k span{display:block;color:var(--i2);margin-top:8px;font-size:14.5px}
+.sx-k:first-child{background:linear-gradient(120deg,var(--turq,#25B4BD),var(--verde,#279D2E));border-color:transparent}.sx-k:first-child b,.sx-k:first-child span{color:#fff}.sx-k:first-child::after{background:#fff}
+.sx-story{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.sx-story--rev .sx-story-ph{order:2}
+.sx-story-ph{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3}.sx-story-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.sx-story-txt p{font-size:17px;color:var(--i2);margin:18px 0 0}
+.sx-steps{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:10px}
+.sx-steps li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:baseline;padding:12px 0;border-top:1px solid var(--ln);font-size:15.5px;color:var(--i2)}
+.sx-steps b{color:var(--a);font-weight:800;font-size:13px}
+.sx-link{display:inline-block;margin-top:22px;font-weight:700;color:var(--a);font-size:14.5px;cursor:pointer}
+.sx-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;background:var(--a);color:#fff;font-weight:700;font-size:13.5px;cursor:pointer;transition:transform .25s,background .25s}
+.sx-btn i{font-style:normal;transition:transform .25s}
+.sx-btn--line{background:transparent;border:1.5px solid var(--i);color:var(--i);padding:13px 20px;font-size:14px}
+.sx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sx-card{display:flex;flex-direction:column;background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);overflow:hidden;color:inherit;text-decoration:none;cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .25s}
+.sx-ph{aspect-ratio:16/10;overflow:hidden;position:relative}.sx-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.sx-tag{position:absolute;left:14px;top:14px;background:var(--c);color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:8px 8px 8px 2px}
+.sx-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.sx-body h3{margin:0;font-family:"Encode Sans",system-ui,sans-serif;font-weight:800;text-transform:none;font-size:22px;letter-spacing:-.02em;line-height:1.1;color:var(--i)}
+.sx-body p{margin:0;color:var(--i2);font-size:15px}
+.sx-body .sx-btn{margin-top:auto;align-self:flex-start;margin-top:14px}
+.sx-card:hover{border-color:var(--c)}.sx-card:hover .sx-btn i{transform:translateX(4px)}
+.sx-anim .sx-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(0,0,0,.25)}
+.sx-anim .sx-card:hover .sx-ph img{transform:scale(1.08)}
+.sx-anim .sx-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--c),transparent 70%);opacity:0;transition:opacity .45s;mix-blend-mode:color}
+.sx-anim .sx-card:hover .sx-ph::after{opacity:.85}
+.sx-anim .sx-card:hover .sx-btn{background:var(--c);color:#fff}
+.sx-conv{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px}
+.sx-conv-big{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:34px 32px}
+.sx-conv-logo{display:inline-block;font-family:"Encode Sans",system-ui,sans-serif;font-weight:800;text-transform:none;font-size:22px;letter-spacing:-.02em;line-height:1.05;padding:14px 18px;border-radius:10px 10px 10px 2px;border:1.5px solid var(--a);color:var(--i);margin-bottom:22px}
+.sx-conv-logo small{display:block;font-family:"Encode Sans",sans-serif;font-weight:500;text-transform:none;font-size:12px;letter-spacing:0;color:var(--i3);margin-top:4px}
+.sx-conv-big h3{margin:0;font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--i)}
+.sx-conv-big p{color:var(--i2);font-size:15.5px;margin:12px 0 0}
+.sx-marq{overflow:hidden;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);padding:22px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.sx-marq-in{display:flex;gap:56px;white-space:nowrap;width:max-content;animation:sxmarq 40s linear infinite}
+.sx-marq-in span{font-family:"Encode Sans",system-ui,sans-serif;font-weight:800;text-transform:none;font-size:20px;letter-spacing:-.01em;color:var(--i3);opacity:.85}
+@keyframes sxmarq{to{transform:translateX(-50%)}}
+@media(max-width:900px){.sx{padding:56px 0}.sx-wrap{padding:0 18px}.sx-head--row{flex-direction:column;align-items:flex-start;gap:14px}.sx-counters{grid-template-columns:1fr 1fr;gap:10px}.sx-k{padding:18px 16px}.sx-k b{font-size:34px}.sx-story{grid-template-columns:1fr;gap:24px}.sx-story--rev .sx-story-ph{order:0}.sx-grid{grid-template-columns:1fr;gap:14px}.sx-conv{grid-template-columns:1fr}.sx-conv-big{padding:24px 20px}.sx-marq-in span{font-size:16px}.sx-marq-in{gap:36px}}
+@media(prefers-reduced-motion:reduce){.sx-marq-in{animation:none}.sx-card,.sx-ph img{transition:none}}
+</style></head><body>
 <header><div class="wrap">
  <img class="logo" src="logo.svg" alt="Fundación Banco Provincia">
  <nav><a class="on">Inicio</a><a>La Fundación</a><a>Programas</a><a>Formación</a><a>Novedades</a><a>Territorio</a></nav>
  <div class="hdr-right"><a class="btn">Contacto</a><div class="burger"></div></div>
 </div></header>
-
 <section class="hero"><div class="wrap">
  <div>
   <div class="eyebrow">Fundación Banco Provincia</div>
@@ -143,44 +195,43 @@ footer .bot{grid-column:1/-1;border-top:1px solid #3A4647;padding-top:20px;margi
  </div>
  <div class="media"><img src="2136.jpg" alt=""><div class="play"><i></i></div><div class="cap">Video institucional · 1:12</div></div>
 </div></section>
-
 <div class="quick"><div class="wrap">
  <div class="lbl">¿Qué estás buscando?</div>
  <a>Un programa <span>→</span></a><a>Formación gratuita <span>→</span></a><a>Acciones en tu distrito <span>→</span></a>
 </div></div>
 
-<section class="nums"><div class="wrap">
- <div class="eyebrow">Resultados</div>
- <h2 style="margin-top:10px">Lo que ya pasó en la provincia</h2>
- <div class="grid">
-  <div class="k"><b>130</b><span>distritos con acciones de la Fundación</span></div>
-  <div class="k"><b>10.365</b><span>anteojos entregados a chicos, chicas y adultos</span></div>
-  <div class="k"><b>3.169</b><span>instrumentos para coros y orquestas</span></div>
-  <div class="k"><b>603</b><span>acciones en clubes de barrio</span></div>
- </div>
+<!-- SX 1: lo que estamos haciendo -->
+<section class="sx sx-1" id="haciendo"><div class="sx-wrap">
+ <div class="sx-head"><div class="sx-eyebrow">Lo que estamos haciendo</div><h2 class="sx-title">Lo que ya pasó en la provincia.</h2><p class="sx-lead">Cada número es una entrega concreta. Se actualizan solos con cada acción que la Fundación carga.</p></div>
+ <div class="sx-counters"><div class="sx-k" data-count=130><b>0</b><span>distritos con acciones de la Fundación</span></div><div class="sx-k" data-count=10365><b>0</b><span>anteojos entregados</span></div><div class="sx-k" data-count=3169><b>0</b><span>instrumentos para orquestas</span></div><div class="sx-k"><b>603</b><span>acciones en clubes de barrio</span></div><div class="sx-k"><b>100+</b><span>plazas transformadas</span></div><div class="sx-k" data-count=200><b>0</b><span>escuelas y hospitales acompañados</span></div><div class="sx-k"><b>28.176</b><span>copas menstruales entregadas</span></div><div class="sx-k" data-count=135><b>0</b><span>municipios de la provincia</span></div></div>
 </div></section>
-
-<section class="pillars"><div class="wrap">
- <div><div class="eyebrow">Qué promovemos</div><h2 style="margin-top:10px">Cinco compromisos, una provincia.</h2><p class="lead">Cada programa de la Fundación responde a uno de estos cinco compromisos con las y los bonaerenses.</p></div>
- <ol>
-  <li style="--c:var(--lima)"><b>El acceso igualitario al juego, la recreación y el deporte</b></li>
-  <li style="--c:var(--bordo)"><b>La democratización de la cultura</b></li>
-  <li style="--c:var(--mostaza)"><b>Inclusión social y no discriminación</b></li>
-  <li style="--c:var(--azul)"><b>Trayectorias educativas plenas</b></li>
-  <li style="--c:var(--violeta)"><b>El desarrollo social y productivo</b></li>
- </ol>
+<section class="sx sx-1b"><div class="sx-wrap sx-story">
+ <div class="sx-story-ph"><img src="2486.jpg" alt=""></div>
+ <div class="sx-story-txt"><div class="sx-eyebrow">A jugar a la plaza · Mayo 2026</div><h2 class="sx-title">100 plazas transformadas en toda la provincia.</h2>
+ <p>Llegamos a las cien plazas renovadas: patios de juego de última generación, seguros y accesibles, y espacios de recreación y movimiento para todas las edades. Cada plaza se trabaja junto al municipio y a los vecinos que la usan todos los días.</p>
+ <ol class="sx-steps"><li><b>01</b><span>El municipio postula la plaza y define con la Fundación qué hace falta.</span></li><li><b>02</b><span>Se instalan juegos, estaciones de ejercicio, bancos y señalética accesible.</span></li><li><b>03</b><span>La plaza vuelve a reunir al barrio, y queda en el mapa con fecha y fotos.</span></li></ol>
+ <a class="sx-link">Leer la historia completa →</a></div>
 </div></section>
-
-<section class="programs"><div class="wrap">
- <div class="head"><div><div class="eyebrow">Programas</div><h2 style="margin-top:10px">Distintas formas de estar cerca.</h2></div><a class="btn ghost">Ver los 9 programas</a></div>
- <div class="grid">
-  <a class="card" style="--c:var(--azul)"><div class="ph"><img src="2084.jpg" alt=""></div><div class="body"><div class="tag">Educación y salud</div><h3>Ver para aprender</h3><p>Controles oftalmológicos en escuelas primarias y entrega de anteojos con el marco que cada chico elige.</p><div class="more">Conocer el programa →</div></div></a>
-  <a class="card" style="--c:var(--lima)"><div class="ph"><img src="2144.jpg" alt=""></div><div class="body"><div class="tag">Comunidad</div><h3>A jugar a la plaza</h3><p>Patios de juego y espacios de recreación en plazas de toda la provincia. Ya son más de 100.</p><div class="more">Conocer el programa →</div></div></a>
-  <a class="card" style="--c:var(--bordo)"><div class="ph"><img src="1790.jpg" alt=""></div><div class="body"><div class="tag">Cultura</div><h3>Se armó la orquesta</h3><p>Instrumentos y complementos para coros, orquestas y formaciones musicales bonaerenses.</p><div class="more">Conocer el programa →</div></div></a>
-  <a class="card" style="--c:var(--verde)"><div class="ph"><img src="2359.jpg" alt=""></div><div class="body"><div class="tag">Comunidad</div><h3>Clubes en forma</h3><p>Obras, accesibilidad y equipamiento en los clubes que sostienen la vida del barrio.</p><div class="more">Conocer el programa →</div></div></a>
-  <a class="card" style="--c:var(--mostaza)"><div class="ph"><img src="2465.jpg" alt=""></div><div class="body"><div class="tag">Educación y salud</div><h3>Acompañamos a escuelas y hospitales</h3><p>Equipamiento, insumos y pequeñas obras para las instituciones que educan y cuidan.</p><div class="more">Conocer el programa →</div></div></a>
-  <a class="card" style="--c:var(--violeta)"><div class="ph"><img src="2320.jpg" alt=""></div><div class="body"><div class="tag">Comunidad</div><h3>Integrando</h3><p>Acompañamiento a las políticas de salud mental de la provincia para que nadie quede afuera.</p><div class="more">Conocer el programa →</div></div></a>
+<section class="sx sx-1c"><div class="sx-wrap sx-story sx-story--rev">
+ <div class="sx-story-ph"><img src="3198.jpg" alt=""></div>
+ <div class="sx-story-txt"><div class="sx-eyebrow">AURA · Agosto 2026</div><h2 class="sx-title">Formación gratuita para la industria musical bonaerense.</h2>
+ <p>Presentamos AURA, un programa de formación, profesionalización y promoción de proyectos musicales y audiovisuales. En esta primera etapa, cuatro cursos gratuitos, virtuales y asincrónicos, dictados por referentes de la industria, con certificación al terminar.</p>
+ <ol class="sx-steps"><li><b>01</b><span>Vivir de la música: desarrollo artístico y creación de audiencias.</span></li><li><b>02</b><span>El rol del mánager, el motor invisible y creadores audiovisuales.</span></li><li><b>03</b><span>Masterclass presencial de cierre con referentes de la industria.</span></li></ol>
+ <a class="sx-link">Leer la historia completa →</a></div>
+</div></section>
+<!-- SX 2: programas -->
+<section class="sx sx-2" id="programas"><div class="sx-wrap">
+ <div class="sx-head sx-head--row"><div><div class="sx-eyebrow">Programas</div><h2 class="sx-title">Distintas formas de estar cerca.</h2></div><a class="sx-btn sx-btn--line">Ver todos los programas</a></div>
+ <div class="sx-grid"><a class="sx-card" style="--c:var(--azul)"><div class="sx-ph"><img src="2084.jpg" alt=""><span class="sx-tag">Educación y salud</span></div><div class="sx-body"><h3>Ver para aprender</h3><p>Controles oftalmológicos en escuelas primarias y entrega de anteojos con el marco que cada chico elige.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a><a class="sx-card" style="--c:var(--lima)"><div class="sx-ph"><img src="2144.jpg" alt=""><span class="sx-tag">Comunidad</span></div><div class="sx-body"><h3>A jugar a la plaza</h3><p>Patios de juego y espacios de recreación en plazas de toda la provincia. Ya son más de 100.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a><a class="sx-card" style="--c:var(--bordo)"><div class="sx-ph"><img src="1790.jpg" alt=""><span class="sx-tag">Cultura</span></div><div class="sx-body"><h3>Se armó la orquesta</h3><p>Instrumentos y complementos para coros, orquestas y centros de creación musical.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a><a class="sx-card" style="--c:var(--verde)"><div class="sx-ph"><img src="2359.jpg" alt=""><span class="sx-tag">Comunidad</span></div><div class="sx-body"><h3>Clubes en forma</h3><p>Obras, accesibilidad y equipamiento en los clubes que sostienen la vida del barrio.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a><a class="sx-card" style="--c:var(--mostaza)"><div class="sx-ph"><img src="2465.jpg" alt=""><span class="sx-tag">Educación y salud</span></div><div class="sx-body"><h3>Acompañamos a escuelas y hospitales</h3><p>Equipamiento, insumos y pequeñas obras para las instituciones que educan y cuidan.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a><a class="sx-card" style="--c:var(--violeta)"><div class="sx-ph"><img src="2320.jpg" alt=""><span class="sx-tag">Comunidad</span></div><div class="sx-body"><h3>Integrando</h3><p>Acompañamiento a las políticas de salud mental de la provincia para que nadie quede afuera.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a><a class="sx-card" style="--c:var(--turq)"><div class="sx-ph"><img src="2515.jpg" alt=""><span class="sx-tag">Educación y salud</span></div><div class="sx-body"><h3>Gestión Menstrual Acompañada</h3><p>Copas menstruales y talleres para que la menstruación no sea un obstáculo para estudiar.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a><a class="sx-card" style="--c:var(--verde)"><div class="sx-ph"><img src="3198.jpg" alt=""><span class="sx-tag">Cultura</span></div><div class="sx-body"><h3>AURA</h3><p>Formación gratuita, virtual y con certificado para la próxima generación de la música bonaerense.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a><a class="sx-card" style="--c:var(--azul)"><div class="sx-ph"><img src="2515.jpg" alt=""><span class="sx-tag">Educación y salud</span></div><div class="sx-body"><h3>Ver para seguir aprendiendo</h3><p>Atención oftalmológica y anteojos para personas adultas, con un móvil equipado que recorre la provincia.</p><span class="sx-btn">Conocé más <i>→</i></span></div></a></div>
+</div></section>
+<!-- SX 3: convenios -->
+<section class="sx sx-3" id="convenios"><div class="sx-wrap">
+ <div class="sx-head"><div class="sx-eyebrow">Convenios</div><h2 class="sx-title">Con quiénes lo hacemos posible.</h2></div>
+ <div class="sx-conv">
+  <article class="sx-conv-big"><div class="sx-conv-logo">Ministerio de Salud<small>Provincia de Buenos Aires</small></div><h3>Salud visual en las escuelas</h3><p>Junto al Ministerio de Salud y la Dirección General de Cultura y Educación llevamos los operativos de Ver para aprender a escuelas primarias de gestión estatal: test de agudeza visual, evaluación oftalmológica completa y entrega de anteojos según prescripción médica.</p><a class="sx-link">Ver el convenio →</a></article>
+  <article class="sx-conv-big"><div class="sx-conv-logo">Provincia NET<small>e Instituto Cultural PBA</small></div><h3>Centros de creación musical</h3><p>Instalamos espacios de preproducción y producción musical para que las y los artistas bonaerenses graben, mezclen y difundan su trabajo sin salir de su ciudad. Ya son once centros en funcionamiento.</p><a class="sx-link">Ver el convenio →</a></article>
  </div>
+ <div class="sx-marq"><div class="sx-marq-in"><span>Provincia NET</span><span>Instituto Cultural PBA</span><span>Olimpíadas Especiales</span><span>Mora Godoy Cía.</span><span>Banco Provincia</span><span>Municipios bonaerenses</span><span>Clubes de barrio</span><span>Hospitales provinciales</span><span>Orquestas escuela</span><span>Provincia NET</span><span>Instituto Cultural PBA</span><span>Olimpíadas Especiales</span><span>Mora Godoy Cía.</span><span>Banco Provincia</span><span>Municipios bonaerenses</span><span>Clubes de barrio</span></div></div>
 </div></section>
 
 <section class="news"><div class="wrap">
@@ -195,7 +246,6 @@ footer .bot{grid-column:1/-1;border-top:1px solid #3A4647;padding-top:20px;margi
   </div>
  </div>
 </div></section>
-
 <section class="map"><div class="wrap">
  <div>
   <div class="eyebrow">Territorio</div>
@@ -209,23 +259,6 @@ footer .bot{grid-column:1/-1;border-top:1px solid #3A4647;padding-top:20px;margi
   <div class="ficha"><b>La Plata</b><small>11 programas con acciones</small><ul><li>Anteojos entregados<em>444</em></li><li>Instrumentos<em>250</em></li><li>Acciones en clubes<em>22</em></li><li>Escuelas y hospitales<em>23</em></li></ul></div>
  </div>
 </div></section>
-
-<section class="form"><div class="wrap">
- <div class="ph"><img src="2129.jpg" alt=""></div>
- <div>
-  <div class="eyebrow">Formación</div>
-  <h2 style="margin-top:10px">AURA: formación gratuita para la música bonaerense.</h2>
-  <ul><li>Vivir de la música <span>4 clases · virtual</span></li><li>El rol del mánager <span>4 clases · virtual</span></li><li>El motor invisible <span>4 clases · virtual</span></li><li>Creadores audiovisuales <span>4 clases · virtual</span></li></ul>
-  <a class="btn">Inscribite a los cursos</a>
- </div>
-</div></section>
-
-<section class="inst"><div class="wrap">
- <div><h3>Desde 1969</h3><p>La Fundación Banco Provincia fue creada para contribuir con el desarrollo económico y social de la provincia de Buenos Aires.</p><a class="lnk">Historia y autoridades →</a></div>
- <div><h3>Transparencia</h3><p>Reportes de gestión, resultados por año y criterios de asignación, publicados para quien quiera consultarlos.</p><a class="lnk">Ver reportes →</a></div>
- <div><h3>Participar</h3><p>Si representás a un club, una escuela, un hospital o un municipio, podés postular tu institución a los programas.</p><a class="lnk">Quiero participar →</a></div>
-</div></section>
-
 <footer><div class="wrap">
  <div><img src="logo.svg" alt="" style="height:40px;filter:brightness(0) invert(1);margin-bottom:16px"><div>Reconquista 46, piso 9<br>Ciudad de Buenos Aires<br>info@fundacionbapro.org.ar · (011) 4331-2070</div></div>
  <div><b>Programas</b>Ver para aprender<br>A jugar a la plaza<br>Se armó la orquesta<br>Clubes en forma<br>Integrando</div>
@@ -233,4 +266,15 @@ footer .bot{grid-column:1/-1;border-top:1px solid #3A4647;padding-top:20px;margi
  <div><b>Seguinos</b>Instagram<br>YouTube<br>Facebook</div>
  <div class="bot"><span>© 2026 Fundación Banco Provincia</span><span>Privacidad · Accesibilidad</span></div>
 </div></footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('[data-count]'); if(!els.length) return;
+  var fmt=function(n){return Math.round(n).toLocaleString('es-AR')};
+  var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function run(el){ var t=+el.getAttribute('data-count'), b=el.querySelector('b'); if(red){b.textContent=fmt(t);return;} var t0=performance.now(), d=1600; (function tick(now){ var k=Math.min(1,(now-t0)/d); var e=1-Math.pow(1-k,3); b.textContent=fmt(t*e); if(k<1) requestAnimationFrame(tick); })(t0); }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ run(e.target); io.unobserve(e.target);} }); },{threshold:.4});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body></html>
