@@ -365,7 +365,7 @@ h2,.hero h1{color:#fff}
   var mask=q('[data-mask]'), logo=q('[data-logo]'), pP=q('[data-p]'), pT=q('[data-turq]'), word=q('[data-word]'), scrim=q('[data-scrim]'), hint=q('[data-hint]'), end=q('[data-end]'), video=q('[data-video]'), bg=q('.intro__bg'), snd=q('[data-snd]');
   var lines=[1,2,3].map(function(n){return q('[data-line="'+n+'"]')});
   var ready=false, dur=0, released=false, wantSound=sessionStorage.getItem('fbp-sound')!=='off', idleT=null, lastP=-1;
-  var REL=.55, T_REL=4.0;
+  var REL=.18, T_REL=0;
   function onMeta(){ ready=true; dur=video.duration||0; }
   video.addEventListener('loadedmetadata',onMeta); if(video.readyState>=1) onMeta(); video.load();
   video.addEventListener('pause',function(){ if(released && !video.ended && progreso()>=REL){ if(!video.muted){ video.muted=true; snd.classList.remove('sound'); snd.querySelector('span').textContent='Activar sonido'; } video.play().catch(function(){}); } });
@@ -383,7 +383,7 @@ h2,.hero h1{color:#fff}
   ['mousemove','touchstart','keydown','scroll','pointerdown'].forEach(function(ev){ window.addEventListener(ev,wake,{passive:true}); });
   function pintar(){
     var p=progreso();
-    if(p>=REL && !released){ released=true; if(ready) video.currentTime=Math.max(video.currentTime,T_REL); video.muted=true; video.play().catch(function(){}); snd.classList.add('on'); snd.classList.remove('sound'); snd.querySelector('span').textContent='Activar sonido'; }
+    if(p>=REL && !released){ released=true; video.muted=true; video.play().catch(function(){}); snd.classList.add('on'); snd.classList.remove('sound'); snd.querySelector('span').textContent='Activar sonido'; }
     if(p<REL && released){ released=false; video.pause(); snd.classList.remove('on'); }
     if(released && video.paused && ready){ video.play().catch(function(){}); }
     var W=pw(); var shift0=W*(112-30)/60;
@@ -398,7 +398,7 @@ h2,.hero h1{color:#fff}
     mask.style.opacity=String(seg(p,.18,.24)); bg.style.opacity=String(1-seg(p,.22,.42));
     pP.style.opacity=String(0.85*(1-seg(p,.18,.34)));
     pT.style.transform='scale('+(size/W).toFixed(3)+')'; pT.style.opacity=String(1-seg(p,.18,.3));
-    if(!released && ready && dur){ var vt=seg(p,.18,REL)*T_REL; if(Math.abs(video.currentTime-vt)>0.01) video.currentTime=vt; }
+    if(!released && ready && video.currentTime>0.05){ video.currentTime=0; }
     var ws=[[.56,.68],[.68,.80],[.80,.92]];
     lines.forEach(function(el,i){ var a=ws[i][0],b=ws[i][1]; var inn=seg(p,a,a+.035), out=seg(p,b-.03,b); el.style.opacity=inn*(1-out); el.style.transform='translateY('+(-18*(1-inn)+10*out)+'px)'; });
     var c=seg(p,.92,.99); scrim.style.opacity=String(0.15+0.85*c);
