@@ -264,34 +264,21 @@ header{background:rgba(11,42,31,.7)}
 @media(max-width:900px){.vh{height:160svh}.vh__title{padding:0 18px 70px}.vh__title h1{font-size:40px}.vh__cta{flex-direction:column}.vh__logo img{width:70vw}.sx-counters--4{grid-template-columns:1fr 1fr}.sx-counters--4 .sx-k b{font-size:46px}.sx-feat{grid-template-columns:1fr}.pv-grid{grid-template-columns:1fr 1fr;gap:10px}.pv__top{left:14px;right:14px;bottom:14px}.pv__top h3{font-size:20px}.pv__more{left:14px;right:14px;bottom:14px}.pv__more p{font-size:13px}.pv:hover .pv__top{transform:translateY(-110px)}}
 @media(hover:none){.pv__more{position:static;opacity:1;transform:none;padding:0 14px 14px}.pv__top{position:static;padding:14px 14px 8px;transform:none!important}.pv{aspect-ratio:auto;display:flex;flex-direction:column;background:var(--g1)}.pv img{aspect-ratio:3/2;height:auto}.pv::after{display:none}}
 
-/* ===== G1 v2: alternancia de verdes y blanco ===== */
-.quick{background:linear-gradient(180deg,#0E4A52,#12605C)}
-.sx-1{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#D9E4DF;--sf:#fff;background:linear-gradient(180deg,#12605C 0%,#EAF3EE 18%,#F6FAF8 100%)}
-.sx-1 .sx-eyebrow{color:#158F93}.sx-1 .sx-k:not(:first-child) b{color:#1F2A2A}
-.sx-1b{--i:#F2F6F4;--i2:#C3CECB;--i3:#8FA09C;--ln:rgba(255,255,255,.12);--sf:rgba(255,255,255,.07);background:linear-gradient(180deg,#F6FAF8 0%,#1B6F49 22%,#12463A 100%)}
-.sx-2{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#D9E4DF;--sf:#fff;background:linear-gradient(180deg,#12463A 0%,#F6FAF8 16%,#FFFFFF 100%)}
-.sx-2 .sx-eyebrow{color:#158F93}.sx-2 .sx-btn--line{border-color:#1F2A2A;color:#1F2A2A}
-.sx-3{--i:#F2F6F4;--i2:#C3CECB;--i3:#8FA09C;--ln:rgba(255,255,255,.14);--sf:rgba(255,255,255,.07);background:linear-gradient(180deg,#FFFFFF 0%,#0E4A52 18%,#0B3A41 100%)}
-.news{background:linear-gradient(180deg,#0B3A41 0%,#F6FAF8 16%,#EEF5F1 100%)}
-.news h2,.news .item h4{color:#1F2A2A}.news .item{background:#fff}.news .btn.ghost{border-color:#1F2A2A;color:#1F2A2A}.news .eyebrow{color:#158F93}.news .item .d{color:#158F93}
-.map{background:linear-gradient(180deg,#EEF5F1 0%,#0F3A2A 16%,#0B2A1F 100%)}
 
-/* ===== versión clara, sin pastel ===== */
+/* ===== claro sin pastel: blanco puro y colores plenos ===== */
 body{background:#FFFFFF;color:#1F2A2A}
-header{background:rgba(255,255,255,.88);border-bottom:1px solid #DCE5E2}
-header .logo{filter:none}nav a{color:#1F2A2A}nav a.on{color:#279D2E;border-color:#279D2E}
-.quick{background:linear-gradient(90deg,#25B4BD,#279D2E)}
-.sx-1{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#DCE5E2;--sf:#fff;background:#FFFFFF}
-.sx-1 .sx-k:not(:first-child){background:#F3F7F5;border-color:#DCE5E2}
-.sx-1b{--i:#F2F6F4;--i2:#DDEFE3;background:linear-gradient(180deg,#FFFFFF 0%,#1B6F49 14%,#12463A 100%)}
-.sx-2{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#DCE5E2;--sf:#fff;background:linear-gradient(180deg,#12463A 0%,#FFFFFF 14%,#FFFFFF 100%)}
-.sx-2 .sx-btn--line{border-color:#1F2A2A;color:#1F2A2A}
-.sx-3{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#D6E2DD;--sf:#fff;background:#F1F6F3}
-.sx-3 .sx-conv-logo{border-color:#279D2E}
-.news{background:#FFFFFF}.news h2,.news .item h4{color:#1F2A2A}.news .item{background:#F3F7F5}.news .btn.ghost{border-color:#1F2A2A;color:#1F2A2A}.news .eyebrow,.news .item .d{color:#158F93}
-.map{background:linear-gradient(180deg,#FFFFFF 0%,#0F3A2A 14%,#0B2A1F 100%)}
+header{background:rgba(255,255,255,.9);border-bottom:1px solid #E3E8E6}header .logo{filter:none}nav a{color:#1F2A2A}nav a.on{color:#279D2E;border-color:#279D2E}
+.quick{background:#279D2E}.quick a{border-left-color:rgba(255,255,255,.35)}
+.sx-1{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#E3E8E6;--sf:#fff;background:#FFFFFF}
+.sx-1 .sx-k:first-child{background:#279D2E}.sx-1 .sx-k:not(:first-child){border:2px solid #279D2E}.sx-1 .sx-k:not(:first-child) b{color:#279D2E}.sx-1 .sx-k::after{display:none}
+.sx-1b{--i:#fff;--i2:#DDEFE3;background:#25B4BD}.sx-1b .sx-eyebrow{color:#0B2A1F}.sx-1b .sx-title{color:#0B2A1F}
+.sx-2{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#E3E8E6;--sf:#fff;background:#FFFFFF}.sx-2 .sx-btn--line{border-color:#1F2A2A;color:#1F2A2A}
+.sx-3{--i:#fff;--i2:#DDEFE3;--i3:#B6E0C2;--ln:rgba(255,255,255,.3);--sf:rgba(255,255,255,.12);background:#279D2E}
+.sx-3 .sx-eyebrow{color:#fff}.sx-3 .sx-conv-logo{border-color:#fff;color:#fff}.sx-3 .sx-conv-logo small{color:#DDEFE3}.sx-3 .sx-link{color:#fff}.sx-3 .sx-marq-in span{color:#fff}
+.news{background:#FFFFFF}.news h2,.news .item h4{color:#1F2A2A}.news .item{background:#fff;border:1px solid #E3E8E6}.news .btn.ghost{border-color:#1F2A2A;color:#1F2A2A}.news .eyebrow,.news .item .d{color:#279D2E}
+.map{background:#0B2A1F}.map::before{display:none}
 footer{background:#0B2A1F}
-.sx-eyebrow{color:#158F93}
+.sx-eyebrow{color:#279D2E}
 </style></head><body class="sx-anim">
 <header><div class="wrap"><img class="logo" src="logo.svg" alt="Fundación Banco Provincia"><nav><a class="on">Inicio</a><a>La Fundación</a><a>Programas</a><a>Formación</a><a>Novedades</a><a>Territorio</a></nav><a class="btn grad" style="padding:11px 18px;font-size:14px">Participar</a><div class="burger" style="display:none"></div></div></header>
 <section class="vh" id="inicio">

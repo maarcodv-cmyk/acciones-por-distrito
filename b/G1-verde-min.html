@@ -264,17 +264,21 @@ header{background:rgba(11,42,31,.7)}
 @media(max-width:900px){.vh{height:160svh}.vh__title{padding:0 18px 70px}.vh__title h1{font-size:40px}.vh__cta{flex-direction:column}.vh__logo img{width:70vw}.sx-counters--4{grid-template-columns:1fr 1fr}.sx-counters--4 .sx-k b{font-size:46px}.sx-feat{grid-template-columns:1fr}.pv-grid{grid-template-columns:1fr 1fr;gap:10px}.pv__top{left:14px;right:14px;bottom:14px}.pv__top h3{font-size:20px}.pv__more{left:14px;right:14px;bottom:14px}.pv__more p{font-size:13px}.pv:hover .pv__top{transform:translateY(-110px)}}
 @media(hover:none){.pv__more{position:static;opacity:1;transform:none;padding:0 14px 14px}.pv__top{position:static;padding:14px 14px 8px;transform:none!important}.pv{aspect-ratio:auto;display:flex;flex-direction:column;background:var(--g1)}.pv img{aspect-ratio:3/2;height:auto}.pv::after{display:none}}
 
-/* ===== G1 v2: alternancia de verdes y blanco ===== */
-.quick{background:linear-gradient(180deg,#0E4A52,#12605C)}
-.sx-1{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#D9E4DF;--sf:#fff;background:linear-gradient(180deg,#12605C 0%,#EAF3EE 18%,#F6FAF8 100%)}
-.sx-1 .sx-eyebrow{color:#158F93}.sx-1 .sx-k:not(:first-child) b{color:#1F2A2A}
-.sx-1b{--i:#F2F6F4;--i2:#C3CECB;--i3:#8FA09C;--ln:rgba(255,255,255,.12);--sf:rgba(255,255,255,.07);background:linear-gradient(180deg,#F6FAF8 0%,#1B6F49 22%,#12463A 100%)}
-.sx-2{--i:#1F2A2A;--i2:#4F5B5C;--i3:#7A8688;--ln:#D9E4DF;--sf:#fff;background:linear-gradient(180deg,#12463A 0%,#F6FAF8 16%,#FFFFFF 100%)}
-.sx-2 .sx-eyebrow{color:#158F93}.sx-2 .sx-btn--line{border-color:#1F2A2A;color:#1F2A2A}
-.sx-3{--i:#F2F6F4;--i2:#C3CECB;--i3:#8FA09C;--ln:rgba(255,255,255,.14);--sf:rgba(255,255,255,.07);background:linear-gradient(180deg,#FFFFFF 0%,#0E4A52 18%,#0B3A41 100%)}
-.news{background:linear-gradient(180deg,#0B3A41 0%,#F6FAF8 16%,#EEF5F1 100%)}
-.news h2,.news .item h4{color:#1F2A2A}.news .item{background:#fff}.news .btn.ghost{border-color:#1F2A2A;color:#1F2A2A}.news .eyebrow{color:#158F93}.news .item .d{color:#158F93}
-.map{background:linear-gradient(180deg,#EEF5F1 0%,#0F3A2A 16%,#0B2A1F 100%)}
+
+/* ===== G1 v3: oscuro sin negro, bloques sólidos ===== */
+:root{--g0:#0B2A1F;--g1:#0E4A52;--g2:#123D2A}
+body{background:var(--g0)}
+.quick{background:#279D2E}.quick a{border-left-color:rgba(255,255,255,.35)}
+.sx-1{--i:#F2F6F4;--i2:#C3CECB;--i3:#8FA09C;--ln:rgba(255,255,255,.14);--sf:rgba(255,255,255,.08);background:var(--g0)}
+.sx-1 .sx-k:first-child{background:#25B4BD}.sx-1 .sx-k:first-child b,.sx-1 .sx-k:first-child span{color:#0B2A1F}.sx-1 .sx-k:not(:first-child) b{color:#fff}
+.sx-1b{--i:#F2F6F4;--i2:#C3CECB;--i3:#8FA09C;background:var(--g1)}
+.sx-2{--i:#F2F6F4;--i2:#C3CECB;--i3:#8FA09C;--ln:rgba(255,255,255,.14);--sf:rgba(255,255,255,.08);background:var(--g0)}
+.sx-3{--i:#0B2A1F;--i2:#2F4A3E;--i3:#5B7A6C;--ln:rgba(11,42,31,.18);--sf:#fff;background:#25B4BD}
+.sx-3 .sx-eyebrow{color:#0B2A1F}.sx-3 .sx-conv-logo{border-color:#0B2A1F}.sx-3 .sx-link{color:#0B2A1F}.sx-3 .sx-marq{border-color:rgba(11,42,31,.25)}.sx-3 .sx-marq-in span{color:#0B2A1F}
+.news{background:var(--g2)}
+.map{background:var(--g0)}.map::before{display:none}
+footer{background:#061A13}
+.sx-eyebrow{color:#7FE3E8}
 </style></head><body class="sx-anim">
 <header><div class="wrap"><img class="logo" src="logo.svg" alt="Fundación Banco Provincia"><nav><a class="on">Inicio</a><a>La Fundación</a><a>Programas</a><a>Formación</a><a>Novedades</a><a>Territorio</a></nav><a class="btn grad" style="padding:11px 18px;font-size:14px">Participar</a><div class="burger" style="display:none"></div></div></header>
 <section class="vh" id="inicio">
