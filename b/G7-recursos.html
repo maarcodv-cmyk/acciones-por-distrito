@@ -38,7 +38,7 @@ nav{display:flex;gap:26px;font-weight:600;font-size:15px}
 .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}.k{background:var(--sf);border:1px solid var(--line);padding:30px 24px 24px;position:relative;overflow:hidden}.k b{display:block;font-size:clamp(44px,4.6vw,72px);font-weight:900;letter-spacing:-.04em;line-height:1;white-space:nowrap}.k span{display:block;color:var(--ink2);margin-top:8px;font-size:15px}.k em{display:block;font-style:normal;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--turq);font-weight:600;opacity:0;transform:translateY(6px);transition:opacity .5s .9s,transform .5s .9s}.k.on em{opacity:1;transform:none}
 .k:first-child{background:linear-gradient(120deg,var(--turq),var(--verde));color:#fff;border:0}.k:first-child span,.k:first-child em{color:#EAFBF3;border-color:rgba(255,255,255,.3)}
 /* 6. historia con scroll */
-.story{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.story__ph{position:sticky;top:110px;aspect-ratio:4/3;overflow:hidden;border-radius:12px 56px 12px 12px}.story__ph img{width:100%;height:100%;object-fit:cover}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:stretch}.story__col{position:relative}.story__ph{position:sticky;top:110px;aspect-ratio:4/3;overflow:hidden;border-radius:12px 56px 12px 12px}.story__ph img{width:100%;height:100%;object-fit:cover}
 .story__steps{padding-top:10vh}.step{min-height:62vh;display:flex;flex-direction:column;justify-content:center;opacity:.25;transition:opacity .5s}.step.on{opacity:1}.step b{color:var(--turq);font-size:13px;letter-spacing:.1em}.step h3{font-size:clamp(26px,2.6vw,38px);font-weight:800;margin:10px 0 12px}.step p{color:var(--ink2);margin:0;max-width:46ch}
 /* 3. la P como ventana */
 .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}.pw{position:relative;display:block}.pw__win{aspect-ratio:60/42;clip-path:url(#pclip);overflow:hidden;background:var(--c)}.pw__win img{width:100%;height:100%;object-fit:cover;transition:transform .7s}.pw:hover .pw__win img{transform:scale(1.08)}
@@ -72,7 +72,7 @@ footer{background:var(--deep);color:#B9C4C2;padding:56px 0 30px;font-size:14px}f
 </div></div></section>
 
 <section class="sec sec--alt"><div class="wrap"><span class="tag">Recurso 6 · historia que se cuenta con scroll</span><div class="eyebrow">Lo que estamos haciendo</div><h2 style="margin:12px 0 40px">Becas Tangueras.</h2>
-<div class="story"><div class="story__ph"><img class="breathe" src="becas.jpg" alt=""></div><div class="story__steps">
+<div class="story"><div class="story__col"><div class="story__ph"><img class="breathe" src="becas.jpg" alt=""></div></div><div class="story__steps">
 <div class="step on"><b>01 / 03</b><h3>Cien bailarines de toda la provincia.</h3><p>Acá va un texto corto del primer paso de la historia.</p></div>
 <div class="step"><b>02 / 03</b><h3>Un mes de ensayos junto a Mora Godoy.</h3><p>Acá va un texto corto del segundo paso.</p></div>
 <div class="step"><b>03 / 03</b><h3>Listos para bailar en primera.</h3><p>Acá va un texto corto del cierre.</p><a class="btn" style="margin-top:18px;align-self:flex-start" data-cursor>Leer la historia</a></div>
@@ -94,9 +94,9 @@ const D={"la-plata": {"name": "La Plata", "svg": "la-plata", "programs": [{"name
  // 8 loader
  setTimeout(()=>document.getElementById('loader').classList.add('off'),1700);
  // 10 tema
- const th=document.getElementById('theme'); const root=document.documentElement; const saved=localStorage.getItem('fbp-theme'); if(saved) root.setAttribute('data-theme',saved);
+ const th=document.getElementById('theme'); const root=document.documentElement; const saved=sessionStorage.getItem('fbp-theme'); if(saved) root.setAttribute('data-theme',saved);
  const lbl=()=>th.querySelector('span').textContent=root.getAttribute('data-theme')==='dark'?'Modo claro':'Modo oscuro'; lbl();
- th.onclick=()=>{ const d=root.getAttribute('data-theme')==='dark'?'light':'dark'; root.setAttribute('data-theme',d); localStorage.setItem('fbp-theme',d); lbl(); };
+ th.onclick=()=>{ const d=root.getAttribute('data-theme')==='dark'?'light':'dark'; root.setAttribute('data-theme',d); sessionStorage.setItem('fbp-theme',d); lbl(); };
  // 7 cursor
  const cur=document.getElementById('cur'); window.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
  document.querySelectorAll('[data-cursor]').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('big'));el.addEventListener('mouseleave',()=>cur.classList.remove('big'));});
