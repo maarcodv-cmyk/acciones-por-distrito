@@ -408,19 +408,19 @@ footer{background:#061A13}
     if(p<REL && released){ released=false; video.pause(); snd.classList.remove('on'); }
     if(released && video.paused && ready) video.play().catch(function(){});
     // 1. frase (0 → .22) se va
-    var f=seg(p,.14,.26); phrase.style.opacity=String(1-f); phrase.style.transform='translateY('+(-30*f)+'px) scale('+(1-.06*f)+')';
+    var f=seg(p,.12,.24); phrase.style.opacity=String(1-f); phrase.style.transform='translateY('+(-30*f)+'px) scale('+(1-.06*f)+')';
     hint.style.opacity=String(1-seg(p,0,.1));
     // 2. aparece la P (.22 → .36), corrida a la izquierda del centro del logo
     var W=pw(); var shift0=W*(112-30)/60;
-    var a=ease(seg(p,.22,.3)); logo.style.opacity=String(seg(p,.22,.27)); logo.style.setProperty('--shift','0px');
-    pP.style.opacity='1'; pP.style.transform='scale('+(0.6+0.4*a)+')'; pT.style.opacity=String(seg(p,.3,.4));
+    var a=ease(seg(p,.28,.36)); logo.style.opacity=String(seg(p,.28,.32)); logo.style.setProperty('--shift','0px');
+    pP.style.opacity='1'; pP.style.transform='scale('+(0.6+0.4*a)+')'; pT.style.opacity=String(seg(p,.34,.42));
     // 3. aparece el texto del logo (.4 → .52): la P se corre a su lugar y el texto entra
-    var w=ease(seg(p,.4,.52)); logo.style.setProperty('--shift',(-shift0*w).toFixed(1)+'px'); word.style.opacity=String(w); word.style.transform='translateX('+(16*(1-w))+'px)';
+    var w=ease(seg(p,.42,.54)); logo.style.setProperty('--shift',(shift0*w).toFixed(1)+'px'); word.style.opacity=String(w); word.style.transform='translateX('+(16*(1-w))+'px)';
     // 4. zoom al video (.58 → .78): la P se vuelve ventana y se abre; el texto se va
     var z=ease(seg(p,.58,.78)); var vmax=Math.max(window.innerWidth,window.innerHeight);
     var size=W+(4.8*vmax-W)*z; mask.style.webkitMaskSize=size+'px auto'; mask.style.maskSize=size+'px auto';
-    mask.style.opacity=String(seg(p,.58,.63)); word.style.opacity=String(w*(1-seg(p,.55,.6))); logo.style.setProperty('--shift',(-shift0*w*(1-seg(p,.55,.62))).toFixed(1)+'px');
-    pP.style.opacity=String(1-seg(p,.6,.7)); pT.style.transform='scale('+(size/W).toFixed(3)+')'; pT.style.opacity=String((1-seg(p,.6,.68))*seg(p,.3,.4));
+    mask.style.opacity=String(seg(p,.58,.63)); word.style.opacity=String(w*(1-seg(p,.55,.6))); logo.style.setProperty('--shift',(shift0*w*(1-seg(p,.56,.62))).toFixed(1)+'px');
+    pP.style.opacity=String(1-seg(p,.58,.64)); pT.style.transform='scale('+(size/W).toFixed(3)+')'; pT.style.opacity=String((1-seg(p,.58,.64))*seg(p,.34,.42));
     bg.style.opacity=String(1-seg(p,.6,.75));
     lastP=p;
   }
