@@ -257,6 +257,12 @@ header nav{background:#fff}
 .wm::before{background-size:clamp(300px,30vw,520px) auto;opacity:.14}
 .wm--dark::before{opacity:.09}
 .sx-3 .wm::before{opacity:.1}
+
+/* barra superior: fija; se esconde al bajar y vuelve apenas se sube */
+header{position:fixed!important;left:0;right:0;top:0;z-index:50;transition:transform .35s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s}
+header.hide{transform:translateY(-110%)}
+header.solid{background:rgba(244,246,242,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+header.solid nav{background:#fff}header.solid .logo{filter:none}
 </style></head><body class="sx-anim">
 <header><div class="wrap"><img class="logo" src="logo.svg" alt=""><nav><a class="on">Inicio</a><a>Programas</a><a>Territorio</a><a>Formación</a><a>Novedades</a><a>La Fundación</a></nav><a class="btn" style="padding:12px 20px;font-size:14px">Participar</a><div class="burger" style="display:none"></div></div></header>
 <section class="vh" id="inicio">
@@ -362,5 +368,10 @@ header nav{background:#fff}
   snd.addEventListener('click',function(e){ e.stopPropagation(); setSound(v.muted); });
   v.addEventListener('pause',function(){ if(!v.ended){ if(!v.muted){ v.muted=true; snd.classList.remove('sound'); snd.querySelector('span').textContent='Activar sonido'; } v.play().catch(function(){}); } });
 })();
+</script>
+<script>
+(function(){ var h=document.querySelector('header'); if(!h) return; var last=0;
+  function on(){ var y=window.scrollY; h.classList.toggle('solid',y>40); if(y>120 && y>last+4) h.classList.add('hide'); else if(y<last-4||y<=120) h.classList.remove('hide'); last=y; }
+  window.addEventListener('scroll',on,{passive:true}); on(); })();
 </script>
 </body></html>

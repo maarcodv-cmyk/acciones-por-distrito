@@ -167,6 +167,12 @@ footer .bot{grid-column:1/-1;border-top:1px solid #2E3636;padding-top:20px;displ
 @keyframes sxmarq{to{transform:translateX(-50%)}}
 @media(max-width:900px){.sx{padding:56px 0}.sx-wrap{padding:0 18px}.sx-head--row{flex-direction:column;align-items:flex-start;gap:14px}.sx-counters{grid-template-columns:1fr 1fr;gap:10px}.sx-k{padding:18px 16px}.sx-k b{font-size:34px}.sx-story{grid-template-columns:1fr;gap:24px}.sx-story--rev .sx-story-ph{order:0}.sx-grid{grid-template-columns:1fr;gap:14px}.sx-conv{grid-template-columns:1fr}.sx-conv-big{padding:24px 20px}.sx-marq-in span{font-size:16px}.sx-marq-in{gap:36px}}
 @media(prefers-reduced-motion:reduce){.sx-marq-in{animation:none}.sx-card,.sx-ph img{transition:none}}
+
+/* barra superior: fija; se esconde al bajar y vuelve apenas se sube */
+header{position:fixed!important;left:0;right:0;top:0;z-index:50;transition:transform .35s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s}
+header.hide{transform:translateY(-110%)}
+header.solid{background:rgba(244,246,242,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+header.solid nav{background:#fff}header.solid .logo{filter:none}
 </style></head><body class="sx-anim">
 <header><div class="wrap"><img class="logo" src="logo.svg" alt=""><nav><a class="on">Inicio</a><a>Programas</a><a>Territorio</a><a>Formación</a><a>Novedades</a><a>La Fundación</a></nav><a class="btn" style="padding:12px 20px;font-size:14px">Participar</a><div class="burger" style="display:none"></div></div></header>
 <section class="hero"><div class="wrap">
@@ -252,5 +258,10 @@ footer .bot{grid-column:1/-1;border-top:1px solid #2E3636;padding-top:20px;displ
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ run(e.target); io.unobserve(e.target);} }); },{threshold:.4});
   els.forEach(function(el){ io.observe(el); });
 })();
+</script>
+<script>
+(function(){ var h=document.querySelector('header'); if(!h) return; var last=0;
+  function on(){ var y=window.scrollY; h.classList.toggle('solid',y>40); if(y>120 && y>last+4) h.classList.add('hide'); else if(y<last-4||y<=120) h.classList.remove('hide'); last=y; }
+  window.addEventListener('scroll',on,{passive:true}); on(); })();
 </script>
 </body></html>
