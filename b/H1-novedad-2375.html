@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600;700;800;900&display=swap">
 <script>
 (function(){ var p=new URLSearchParams(location.search), h=document.documentElement;
- var def={portada:'video',historias:'foto',programas:'tarjetas',novedades:'lista',tono:'oscuro',fondo:'silueta',datos:'foto',mapa:'encendido',respira:'no',boton:'no',banda:'no',buscando:'no',bar:'1'};
+ var def={portada:'video',historias:'foto',programas:'tarjetas',novedades:'lista',tono:'oscuro',fondo:'silueta',datos:'foto',mapa:'encendido',respira:'no',boton:'no',banda:'no',buscando:'no',convenios:'tarjetas',bar:'1'};
  Object.keys(def).forEach(function(k){ var v=p.get(k); if(!v){ try{ v=sessionStorage.getItem('h1-opt-'+k); }catch(e){} } h.setAttribute('data-'+k,v||def[k]); });
  try{ if(sessionStorage.getItem('h1-bar')==='off') h.classList.add('vbar-off'); }catch(e){}
 })();
@@ -213,6 +213,9 @@ html[data-datos="liso"] .datos__bg{display:none}
 .sf .wrap{position:relative;z-index:1;display:block;max-width:900px;text-align:center;padding-top:130px;padding-bottom:30px}
 .sf__head{margin-bottom:6px}
 .sf .step{align-items:center;text-align:center;min-height:60vh}.sf .step p{margin:0 auto;max-width:56ch}.sf .step .btn{align-self:center!important}
+.sf--side .wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;max-width:1280px;text-align:left;align-items:start}
+.sf--side .sf__head{position:sticky;top:120px}.sf--side .sf__head h2{font-size:clamp(40px,5.2vw,78px)}
+.sf--side .step{align-items:flex-start;text-align:left;min-height:68vh}.sf--side .step h3{font-size:clamp(34px,3.8vw,56px);line-height:1;letter-spacing:-.03em}.sf--side .step p{margin:0;max-width:40ch;font-size:clamp(18px,1.5vw,22px)}.sf--side .step b{font-size:15px}.sf--side .step .btn{align-self:flex-start!important}
 .sf__head h2{font-size:clamp(34px,4.4vw,64px);font-weight:900;letter-spacing:-.035em;line-height:.98;margin-top:12px;color:#fff}
 .sf__head .eyebrow{color:#9FE6EA}
 .sf .step{color:#fff}.sf .step b{color:#B6F36F}.sf .step p{color:#DDEFE3}
@@ -253,6 +256,14 @@ html[data-datos="liso"] .datos__bg{display:none}
 .cv__logo span{display:inline-grid;place-items:center;width:34px;height:34px;border:1.5px dashed #8A9494;border-radius:6px;font-size:9px;font-weight:700;color:#8A9494;letter-spacing:.05em}
 .cv__t{padding:20px 22px 24px}.cv__t h3{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--i)}.cv__t p{color:var(--i2);font-size:15px;margin:10px 0 0}
 .cv__nav{display:flex;gap:8px;justify-content:flex-end;margin-bottom:18px}
+html[data-convenios="marquee"] .cv__nav{display:none}
+html[data-convenios="tarjetas"] [data-v="convenios:tarjetas"],html[data-convenios="entera"] [data-v="convenios:entera"],html[data-convenios="marquee"] [data-v="convenios:marquee"]{display:block}
+.cv__it--full{position:relative;aspect-ratio:4/5;color:#fff;border:0;background:#0B2A1F}.cv__it--full .cv__ph{position:absolute;inset:0;aspect-ratio:auto}.cv__it--full .cv__ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.95) 0%,rgba(11,42,31,.55) 45%,rgba(11,42,31,.05) 100%)}
+.cv__it--full .cv__logo{bottom:auto;top:16px}.cv__it--full .cv__t{position:absolute;left:0;right:0;bottom:0;padding:22px 22px 24px}.cv__it--full .cv__t h3{color:#fff}.cv__it--full .cv__t p{color:#DDEFE3}.cv__it--full .sx-link{color:#9FE6EA}
+.cv-marq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.cv-marq__in{display:flex;gap:20px;width:max-content;animation:cvmarq 90s linear infinite}.cv-marq:hover .cv-marq__in{animation-play-state:paused}.cv-marq .cv__it{flex:0 0 360px}
+@keyframes cvmarq{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.cv-marq__in{animation:none}}
 .cv__nav button{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--ln);background:transparent;color:var(--i);font-size:18px;cursor:pointer}
 /* ===== novedades ===== */
 .news-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
@@ -318,7 +329,7 @@ footer .bot{grid-column:1/-1;border-top:1px solid #4A5555;padding-top:20px;margi
 html[data-portada="video"] [data-v="portada:video"],html[data-portada="banner"] [data-v="portada:video"],html[data-portada="banner"] [data-v="portada:banner"],html[data-portada="intro"] [data-v="portada:intro"],html[data-portada="quieto"] [data-v="portada:quieto"],html[data-portada="recuadro"] [data-v="portada:recuadro"]{display:block}
 html[data-portada="banner"] #loader{display:grid}
 html[data-buscando="si"] [data-v="buscando:si"]{display:block}
-html[data-historias="foto"] [data-v="historias:foto"],html[data-historias="scroll"] [data-v="historias:scroll"],html[data-historias="tarjetas"] [data-v="historias:tarjetas"],html[data-historias="scrollfoto"] [data-v="historias:scrollfoto"]{display:block}
+html[data-historias="foto"] [data-v="historias:foto"],html[data-historias="scroll"] [data-v="historias:scroll"],html[data-historias="tarjetas"] [data-v="historias:tarjetas"],html[data-historias="scrollfoto"] [data-v="historias:scrollfoto"],html[data-historias="scrollfoto2"] [data-v="historias:scrollfoto2"]{display:block}
 html[data-programas="tarjetas"] [data-v="programas:tarjetas"],html[data-programas="fichas"] [data-v="programas:fichas"]{display:block}
 html[data-novedades="lista"] [data-v="novedades:lista"],html[data-novedades="tarjetas"] [data-v="novedades:tarjetas"],html[data-novedades="linea"] [data-v="novedades:linea"]{display:block}
 .social{position:fixed;right:18px;bottom:18px;z-index:55;display:flex;flex-direction:column;gap:10px}
@@ -337,7 +348,7 @@ html:not(.vbar-off) .social{right:358px}
 html.vbar-off .vbar{display:none}html.vbar-off .vpill{display:block}
 html[data-bar="0"] .vbar,html[data-bar="0"] .vpill{display:none!important}
 html[data-bar="0"] body{margin-right:0}html[data-bar="0"] header{right:0}html[data-bar="0"] .social{right:18px}
-@media(max-width:900px){.ng-grid{grid-template-columns:1fr 1fr}.ng-main{aspect-ratio:4/3}.theme span{display:none}.sf .wrap{padding-top:90px}.feat a{aspect-ratio:4/3}.wrap{padding:0 18px}header .wrap{height:66px}nav{display:none}.logo{height:36px}.sec{padding:56px 0}.head--row{flex-direction:column;align-items:flex-start;gap:14px}
+@media(max-width:900px){.sf--side .wrap{grid-template-columns:1fr;gap:10px}.sf--side .sf__head{position:static}.ng-grid{grid-template-columns:1fr 1fr}.ng-main{aspect-ratio:4/3}.theme span{display:none}.sf .wrap{padding-top:90px}.feat a{aspect-ratio:4/3}.wrap{padding:0 18px}header .wrap{height:66px}nav{display:none}.logo{height:36px}.sec{padding:56px 0}.head--row{flex-direction:column;align-items:flex-start;gap:14px}
  .quick .wrap{grid-template-columns:1fr}.quick .lbl{padding:16px 0 4px}.quick a{border-left:0;border-top:1px solid rgba(255,255,255,.35);padding:14px 0}
  .vh{height:160svh}.vh__title{padding:0 18px 70px}.vh__title h1{font-size:40px}.vh__cta{flex-direction:column}.vh__logo img{width:70vw}
  .qt{height:280svh}.qt__txt{padding:0 18px}.qt__line{left:18px;right:18px}.qt__end{left:18px;right:18px;bottom:60px}.qt__end h1{font-size:38px}
@@ -431,8 +442,9 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
 <div class="vbar__g"><span>Tono</span><div class="vbar__b" data-k="tono"><button data-val="oscuro">Verde oscuro</button><button data-val="blanco">Blanco con turquesa y verde</button><button data-val="claro">Claro, letras verde oscuro</button></div></div>
 <div class="vbar__g"><span>Fondo</span><div class="vbar__b" data-k="fondo"><button data-val="liso">Liso</button><button data-val="silueta">Con la silueta de la P</button><button data-val="contorno">Silueta más P en contorno</button><button data-val="bloques">Bloques de verde pleno y lima</button></div></div>
 <div class="vbar__g"><span>Datos</span><div class="vbar__b" data-k="datos"><button data-val="foto">Sobre foto sin color</button><button data-val="liso">Sobre fondo liso</button></div></div>
-<div class="vbar__g"><span>Lo que estamos haciendo</span><div class="vbar__b" data-k="historias"><button data-val="foto">Foto entera de fondo</button><button data-val="scroll">Contada con scroll</button><button data-val="scrollfoto">Contada con scroll sobre la foto</button><button data-val="tarjetas">Dos tarjetas con foto</button></div></div>
+<div class="vbar__g"><span>Lo que estamos haciendo</span><div class="vbar__b" data-k="historias"><button data-val="foto">Foto entera de fondo</button><button data-val="scroll">Contada con scroll</button><button data-val="scrollfoto">Sobre la foto, todo centrado</button><button data-val="scrollfoto2">Sobre la foto, título a la izquierda y textos grandes</button><button data-val="tarjetas">Dos tarjetas con foto</button></div></div>
 <div class="vbar__g"><span>Programas</span><div class="vbar__b" data-k="programas"><button data-val="tarjetas">Tarjetas que se dan vuelta</button><button data-val="fichas">Fichas desfasadas</button></div></div>
+<div class="vbar__g"><span>Convenios</span><div class="vbar__b" data-k="convenios"><button data-val="tarjetas">Carrusel de tarjetas</button><button data-val="entera">Carrusel con la foto entera</button><button data-val="marquee">Pasa solo, lento, con la foto entera</button></div></div>
 <div class="vbar__g"><span>Novedades</span><div class="vbar__b" data-k="novedades"><button data-val="lista">Una grande y lista</button><button data-val="tarjetas">Tarjetas</button><button data-val="grilla">Grilla de revista</button></div></div>
 <div class="vbar__g"><span>Mapa</span><div class="vbar__b" data-k="mapa"><button data-val="encendido">Se enciende al llegar, con ficha</button><button data-val="clasico">Buscador, filtros y ficha</button></div></div>
 <div class="vbar__g"><span>Detalles</span><div class="vbar__b" data-k="respira"><button data-val="no">Fotos quietas</button><button data-val="si">Fotos que respiran</button></div><div class="vbar__b" data-k="boton" style="margin-top:5px"><button data-val="no">Sin botón de modo claro</button><button data-val="si">Botón de modo claro en la barra</button></div><div class="vbar__b" data-k="buscando" style="margin-top:5px"><button data-val="no">Sin la barra "¿Qué estás buscando?"</button><button data-val="si">Con la barra "¿Qué estás buscando?"</button></div><div class="vbar__b" data-k="banda" style="margin-top:5px"><button data-val="no">Convenios sin banda de aliados</button><button data-val="si">Con banda de aliados que pasa</button></div></div>
@@ -441,14 +453,14 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
 (function(){
  // --- variantes: se quitan del documento las que no se eligieron
  var h=document.documentElement;
- var GO={fondo:{liso:'#programas',silueta:'#programas',contorno:'#territorio',bloques:'#convenios'},mapa:{encendido:'#territorio',clasico:'#territorio'},respira:{si:'#historias',no:'#historias'},boton:{si:'#datos',no:'#datos'},banda:{si:'#convenios',no:'#convenios'},buscando:{si:'#datos',no:'#datos'},datos:{foto:'#datos',liso:'#datos'},historias:{foto:'#historias',scroll:'#historias-scroll',scrollfoto:'#historias-scrollfoto',tarjetas:'#historias-tarjetas'},programas:{tarjetas:'#programas',fichas:'#programas-fichas'},novedades:{lista:'#novedades',tarjetas:'#novedades-tarjetas',grilla:'#novedades-grilla'}};
+ var GO={fondo:{liso:'#programas',silueta:'#programas',contorno:'#territorio',bloques:'#convenios'},mapa:{encendido:'#territorio',clasico:'#territorio'},respira:{si:'#historias',no:'#historias'},boton:{si:'#datos',no:'#datos'},banda:{si:'#convenios',no:'#convenios'},buscando:{si:'#datos',no:'#datos'},datos:{foto:'#datos',liso:'#datos'},historias:{foto:'#historias',scroll:'#historias-scroll',scrollfoto:'#historias-scrollfoto',scrollfoto2:'#historias-scrollfoto2',tarjetas:'#historias-tarjetas'},convenios:{tarjetas:'#convenios',entera:'#convenios',marquee:'#convenios'},programas:{tarjetas:'#programas',fichas:'#programas-fichas'},novedades:{lista:'#novedades',tarjetas:'#novedades-tarjetas',grilla:'#novedades-grilla'}};
  function videosOn(){ document.querySelectorAll('video').forEach(function(v){ var vis=!!(v.offsetWidth||v.offsetHeight||v.getClientRects().length); if(vis){ if(v.autoplay&&v.paused) v.play().catch(function(){}); } else if(!v.paused) v.pause(); }); }
  function setV(k,val,scroll){ h.setAttribute('data-'+k,val); try{ sessionStorage.setItem('h1-opt-'+k,val); }catch(e){} try{ var p=new URLSearchParams(location.search); p.set(k,val); history.replaceState(null,'',location.pathname+'?'+p.toString()+location.hash); }catch(e){}
    document.querySelectorAll('.vbar__b[data-k="'+k+'"] button').forEach(function(b){ b.classList.toggle('on',b.dataset.val===val); });
    if(k==='portada'){ var ld=document.getElementById('loader'); if(ld){ if(val==='banner'){ ld.classList.remove('off'); setTimeout(function(){ld.classList.add('off')},2100); } } if(scroll) window.scrollTo({top:0,behavior:'auto'}); }
    else if(scroll && GO[k]){ var el=document.querySelector((k==='fondo'&&val!=='contorno'&&h.getAttribute('data-programas')==='fichas')?'#programas-fichas':GO[k][val]); if(el){ var y=el.getBoundingClientRect().top+window.scrollY-20; window.scrollTo({top:y,behavior:'auto'}); } }
    if(k==='mapa' && window.__paintAll) window.__paintAll(val==='clasico'); if((k==='boton'||k==='buscando') && scroll){ var q=document.querySelector('.quick'); window.scrollTo({top:(k==='buscando'&&q)?q.getBoundingClientRect().top+window.scrollY-300:0,behavior:'auto'}); } videosOn(); window.dispatchEvent(new Event('scroll')); }
- ['portada','tono','fondo','datos','historias','programas','novedades','mapa','respira','boton','banda','buscando'].forEach(function(k){ setV(k,h.getAttribute('data-'+k),false); });
+ ['portada','tono','fondo','datos','historias','programas','novedades','mapa','respira','boton','banda','buscando','convenios'].forEach(function(k){ setV(k,h.getAttribute('data-'+k),false); });
  var bar=document.getElementById('vbar'), pill=document.getElementById('vpill');
  var th=document.getElementById('theme'); if(th){ th.addEventListener('click',function(){ var c=h.getAttribute('data-tono')!=='oscuro'; setV('tono',c?'oscuro':'blanco',false); th.querySelector('span').textContent=c?'Modo claro':'Modo oscuro'; }); }
  if(bar){ bar.querySelectorAll('.vbar__b button').forEach(function(b){ b.addEventListener('click',function(){ setV(b.parentElement.dataset.k,b.dataset.val,true); }); }); bar.querySelector('[data-close]').addEventListener('click',function(){ h.classList.add('vbar-off'); try{sessionStorage.setItem('h1-bar','off')}catch(e){} window.dispatchEvent(new Event('resize')); }); pill.addEventListener('click',function(){ h.classList.remove('vbar-off'); try{sessionStorage.setItem('h1-bar','on')}catch(e){} window.dispatchEvent(new Event('resize')); }); }
@@ -468,7 +480,7 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
  // --- programas: en pantallas táctiles, un toque da vuelta la tarjeta
  document.querySelectorAll('.pv').forEach(function(c){ c.addEventListener('click',function(e){ if(matchMedia('(hover:none)').matches){ e.preventDefault(); c.classList.toggle('flip'); } }); });
  // --- convenios: carrusel con flechas y avance automático
- var tr=document.querySelector('[data-cv-track]'); if(tr){ var step=function(){ var it=tr.querySelector('.cv__it'); return it?it.getBoundingClientRect().width+20:400; }; document.querySelectorAll('[data-cv]').forEach(function(b){ b.addEventListener('click',function(){ tr.scrollBy({left:step()*(+b.dataset.cv),behavior:'smooth'}); }); }); var auto=setInterval(function(){ if(tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4) tr.scrollTo({left:0,behavior:'smooth'}); else tr.scrollBy({left:step(),behavior:'smooth'}); },4500); tr.addEventListener('pointerenter',function(){clearInterval(auto)}); }
+ var trs=[].slice.call(document.querySelectorAll('[data-cv-track]')); if(trs.length){ var vis=function(){ return trs.filter(function(x){return x.offsetParent!==null})[0]; }; var step=function(tr){ var it=tr.querySelector('.cv__it'); return it?it.getBoundingClientRect().width+20:400; }; document.querySelectorAll('[data-cv]').forEach(function(b){ b.addEventListener('click',function(){ var tr=vis(); if(tr) tr.scrollBy({left:step(tr)*(+b.dataset.cv),behavior:'smooth'}); }); }); var hov=false; trs.forEach(function(tr){ tr.addEventListener('pointerenter',function(){hov=true}); tr.addEventListener('pointerleave',function(){hov=false}); }); setInterval(function(){ var tr=vis(); if(!tr||hov) return; if(tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4) tr.scrollTo({left:0,behavior:'smooth'}); else tr.scrollBy({left:step(tr),behavior:'smooth'}); },6000); }
  // --- línea de tiempo
  var tl=document.querySelector('.tl'); if(tl){ var its=[].slice.call(tl.querySelectorAll('.tl__it')); var near=function(){ var r=tl.getBoundingClientRect(); its.forEach(function(it){ var b=it.getBoundingClientRect(); it.classList.toggle('near',b.left>r.left-40&&b.right<r.right+40); }); }; tl.addEventListener('scroll',near,{passive:true}); near(); }
  // --- mapa que se enciende, con ficha
