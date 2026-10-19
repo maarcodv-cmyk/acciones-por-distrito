@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600;700;800;900&display=swap">
 <script>
 (function(){ var p=new URLSearchParams(location.search), h=document.documentElement;
- var def={portada:'video',historias:'foto',programas:'tarjetas',novedades:'lista',tono:'oscuro',bar:'1'};
+ var def={portada:'video',historias:'foto',programas:'tarjetas',novedades:'lista',tono:'oscuro',fondo:'silueta',datos:'foto',bar:'1'};
  Object.keys(def).forEach(function(k){ var v=p.get(k)||def[k]; h.setAttribute('data-'+k,v); });
 })();
 </script>
@@ -33,6 +33,7 @@ html[data-tono="claro"] .btn.ghost{color:var(--i)}
 .pbg::after{content:"";position:absolute;right:-18vmax;top:-12vmax;width:80vmax;height:56vmax;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 42'><path d='M3.1,39.4l19.3-12.2c4.3-2.7,8.6-0.6,8.6,4.2v14.2c0,1.6,1.1,2.8,2.9,2.8h3.7c12,0,22.4-8.7,22.4-23.5C59.9,9.6,47.9,0,33.8,0H4C1.9,0,0,1.9,0,4v34.1C0,39.5,1.8,40.2,3.1,39.4' fill='rgba(37,180,189,0.10)'/></svg>") no-repeat;background-size:contain;pointer-events:none;transform:rotate(-8deg);z-index:0}
 .pbg--left::after{right:auto;left:-22vmax;top:auto;bottom:-16vmax;transform:rotate(8deg) scaleX(-1)}
 .pline::before{content:"";position:absolute;left:-8vmax;top:-6vmax;width:44vmax;height:31vmax;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-1 -1 62 44'><path d='M3.1,39.4l19.3-12.2c4.3-2.7,8.6-0.6,8.6,4.2v14.2c0,1.6,1.1,2.8,2.9,2.8h3.7c12,0,22.4-8.7,22.4-23.5C59.9,9.6,47.9,0,33.8,0H4C1.9,0,0,1.9,0,4v34.1C0,39.5,1.8,40.2,3.1,39.4' fill='none' stroke='rgba(127,227,232,0.22)' stroke-width='.6'/></svg>") no-repeat;background-size:contain;pointer-events:none;z-index:0}
+html[data-fondo="liso"] .pbg::after,html[data-fondo="liso"] .pline::before,html[data-fondo="silueta"] .pline::before{display:none}
 /* barra superior: se esconde al bajar y vuelve al subir */
 header{position:fixed;left:0;right:0;top:0;z-index:50;background:rgba(11,42,31,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln);transition:transform .35s cubic-bezier(.2,.8,.2,1),background .3s}
 header.hide{transform:translateY(-110%)}
@@ -154,6 +155,9 @@ html[data-tono="claro"] header{background:rgba(251,252,250,.85)}html[data-tono="
 .big b{display:block;font-size:clamp(64px,9vw,150px);font-weight:900;letter-spacing:-.05em;line-height:.9;color:var(--i);font-variant-numeric:tabular-nums}
 .big b em{font-style:normal;color:var(--a)}
 .big span{display:block;margin-top:14px;font-size:clamp(15px,1.3vw,20px);color:var(--i2);font-weight:600}
+.datos__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);opacity:.22;z-index:0}
+html[data-tono="claro"] .datos__bg{opacity:.14}
+html[data-datos="liso"] .datos__bg{display:none}
 /* ===== historias: foto entera de fondo ===== */
 .hf{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;color:#fff}
 .hf img.hf__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -182,6 +186,15 @@ html[data-tono="claro"] header{background:rgba(251,252,250,.85)}html[data-tono="
 .step h3{font-size:clamp(26px,2.6vw,38px);font-weight:800;margin:10px 0 12px}
 .step p{color:var(--i2);margin:0;max-width:46ch}
 .story__note{margin-top:10px;font-size:14px;color:var(--i3);max-width:620px}
+.sf{position:relative;color:#fff}
+.sf__bg{position:sticky;top:0;height:100svh;overflow:hidden;margin-bottom:-100svh;z-index:0}
+.sf__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s}.sf__bg img.on{opacity:1}
+.sf__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,42,31,.2) 0%,rgba(11,42,31,.55) 55%,rgba(11,42,31,.92) 100%)}
+.sf .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;padding-top:110px;padding-bottom:40px}
+.sf__head{position:sticky;top:110px;align-self:start}
+.sf__head h2{font-size:clamp(34px,4.4vw,64px);font-weight:900;letter-spacing:-.035em;line-height:.98;margin-top:12px;color:#fff}
+.sf__head .eyebrow{color:#9FE6EA}
+.sf .step{color:#fff}.sf .step b{color:#B6F36F}.sf .step p{color:#DDEFE3}
 /* ===== historias: dos tarjetas con foto entera ===== */
 .feat{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .feat a{position:relative;display:block;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;color:#fff}
@@ -278,7 +291,7 @@ footer .bot{grid-column:1/-1;border-top:1px solid #4A5555;padding-top:20px;margi
 /* ===== variantes: se muestra una por grupo ===== */
 [data-v]{display:none}
 html[data-portada="video"] [data-v="portada:video"],html[data-portada="banner"] [data-v="portada:video"],html[data-portada="banner"] [data-v="portada:banner"],html[data-portada="intro"] [data-v="portada:intro"],html[data-portada="quieto"] [data-v="portada:quieto"],html[data-portada="fotop"] [data-v="portada:fotop"]{display:block}
-html[data-historias="foto"] [data-v="historias:foto"],html[data-historias="scroll"] [data-v="historias:scroll"],html[data-historias="tarjetas"] [data-v="historias:tarjetas"]{display:block}
+html[data-historias="foto"] [data-v="historias:foto"],html[data-historias="scroll"] [data-v="historias:scroll"],html[data-historias="tarjetas"] [data-v="historias:tarjetas"],html[data-historias="scrollfoto"] [data-v="historias:scrollfoto"]{display:block}
 html[data-programas="tarjetas"] [data-v="programas:tarjetas"],html[data-programas="fichas"] [data-v="programas:fichas"]{display:block}
 html[data-novedades="lista"] [data-v="novedades:lista"],html[data-novedades="tarjetas"] [data-v="novedades:tarjetas"],html[data-novedades="linea"] [data-v="novedades:linea"]{display:block}
 .vbar{position:fixed;right:14px;bottom:14px;z-index:60;background:#0B2A1F;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:12px 14px 14px;font-size:12px;box-shadow:0 10px 30px rgba(0,0,0,.35);width:min(92vw,340px);max-height:calc(100vh - 40px);overflow:auto}
@@ -289,7 +302,7 @@ html[data-novedades="lista"] [data-v="novedades:lista"],html[data-novedades="tar
 .vpill{position:fixed;right:14px;bottom:14px;z-index:60;display:none;font:700 13px "Encode Sans",sans-serif;background:#25B4BD;color:#0B2A1F;border:0;border-radius:999px;padding:11px 16px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 html.vbar-off .vbar{display:none}html.vbar-off .vpill{display:block}
 html[data-bar="0"] .vbar,html[data-bar="0"] .vpill{display:none!important}
-@media(max-width:900px){.wrap{padding:0 18px}header .wrap{height:66px}nav{display:none}.logo{height:36px}.sec{padding:56px 0}.head--row{flex-direction:column;align-items:flex-start;gap:14px}
+@media(max-width:900px){.sf .wrap{grid-template-columns:1fr;gap:10px;padding-top:80px}.sf__head{position:static}.wrap{padding:0 18px}header .wrap{height:66px}nav{display:none}.logo{height:36px}.sec{padding:56px 0}.head--row{flex-direction:column;align-items:flex-start;gap:14px}
  .quick .wrap{grid-template-columns:1fr}.quick .lbl{padding:16px 0 4px}.quick a{border-left:0;border-top:1px solid rgba(255,255,255,.35);padding:14px 0}
  .vh{height:160svh}.vh__title{padding:0 18px 70px}.vh__title h1{font-size:40px}.vh__cta{flex-direction:column}.vh__logo img{width:70vw}
  .qt{height:280svh}.qt__txt{padding:0 18px}.qt__line{left:18px;right:18px}.qt__end{left:18px;right:18px;bottom:60px}.qt__end h1{font-size:38px}
@@ -377,7 +390,7 @@ html[data-tono="claro"] .pline::before{background-image:url("data:image/svg+xml;
   <div class="cap">Video institucional · 1:12</div>
 </div></section>
 <div class="quick"><div class="wrap"><div class="lbl">¿Qué estás buscando?</div><a>Un programa <span>→</span></a><a>Formación gratuita <span>→</span></a><a>Acciones en tu distrito <span>→</span></a></div></div>
-<section class="sec pbg" id="datos"><div class="wrap">
+<section class="sec pbg" id="datos"><img class="datos__bg" src="2486.jpg" alt=""><div class="wrap">
  <div class="head" style="text-align:center;margin-bottom:0"><div class="eyebrow">Lo que estamos haciendo</div><h2 class="title">Lo que ya pasó en la provincia.</h2></div>
  <div class="big">
   <div data-count="130"><b>0</b><span>distritos con acciones de la Fundación</span></div>
@@ -390,14 +403,19 @@ html[data-tono="claro"] .pline::before{background-image:url("data:image/svg+xml;
 <section class="hf"><img class="hf__bg" src="becas.jpg" alt=""><div class="wrap"><div class="hf__box"><div class="eyebrow">Lo que estamos haciendo · Cultura</div><h2>Becas Tangueras.</h2><p>Acá va un texto corto sobre las Becas Tangueras.</p><ol class="hf__steps"><li><b>01</b>Cien bailarines de toda la provincia.</li><li><b>02</b>Un mes de ensayos junto a Mora Godoy.</li><li><b>03</b>Listos para bailar en primera.</li></ol><a class="btn grad">Leer la historia</a></div></div></section>
 <section class="hf hf--right"><img class="hf__bg" src="3198.jpg" alt=""><div class="wrap"><div class="hf__box"><div class="eyebrow">Lo que estamos haciendo · Formación</div><h2>AURA.</h2><p>Acá va un texto corto sobre AURA, el programa de formación para la industria musical.</p><ol class="hf__steps"><li><b>01</b>Formación gratuita y virtual.</li><li><b>02</b>Con certificado.</li><li><b>03</b>Para la próxima generación de la música bonaerense.</li></ol><a class="btn grad">Conocer AURA</a></div></div></section>
 </div>
-<section class="sec sec--alt pline" data-v="historias:scroll" id="historias-scroll"><div class="wrap">
- <div class="story"><div class="story__col"><div class="story__fix"><div class="eyebrow">Lo que estamos haciendo</div><h2>Becas Tangueras.</h2><div class="story__ph"><img class="on" src="2500.jpg" alt=""><img src="2523.jpg" alt=""><img src="becas.jpg" alt=""></div></div></div><div class="story__steps">
+<section class="sec sec--alt pline" data-v="historias:scroll" id="historias-scroll" data-story><div class="wrap">
+ <div class="story"><div class="story__col"><div class="story__fix"><div class="eyebrow">Lo que estamos haciendo</div><h2>Becas Tangueras.</h2><div class="story__ph"><img class="on" src="2500.jpg" alt="" data-ph-img><img src="2523.jpg" alt="" data-ph-img><img src="becas.jpg" alt="" data-ph-img></div></div></div><div class="story__steps">
  <div class="step on" data-ph="0"><b>01 / 03</b><h3>Cien bailarines de toda la provincia.</h3><p>Acá va un texto corto del primer paso de la historia.</p></div>
  <div class="step" data-ph="1"><b>02 / 03</b><h3>Un mes de ensayos junto a Mora Godoy.</h3><p>Acá va un texto corto del segundo paso.</p></div>
  <div class="step" data-ph="2"><b>03 / 03</b><h3>Listos para bailar en primera.</h3><p>Acá va un texto corto del cierre.</p><a class="btn grad" style="margin-top:18px;align-self:flex-start">Leer la historia</a></div>
  </div></div>
  <p class="story__note">La cantidad de pasos la define la Fundación al cargar la historia: con una sola foto y un texto no hay recorrido y la página sigue normal; con dos o más, cada paso cambia la foto. El botón de leer más es optativo.</p>
 </div></section>
+<section class="sf" data-v="historias:scrollfoto" id="historias-scrollfoto" data-story><div class="sf__bg"><img class="on" src="2500.jpg" alt="" data-ph-img><img src="2523.jpg" alt="" data-ph-img><img src="becas.jpg" alt="" data-ph-img></div><div class="wrap"><div class="sf__head"><div class="eyebrow">Lo que estamos haciendo</div><h2>Becas Tangueras.</h2></div><div class="story__steps">
+ <div class="step on" data-ph="0"><b>01 / 03</b><h3>Cien bailarines de toda la provincia.</h3><p>Acá va un texto corto del primer paso de la historia.</p></div>
+ <div class="step" data-ph="1"><b>02 / 03</b><h3>Un mes de ensayos junto a Mora Godoy.</h3><p>Acá va un texto corto del segundo paso.</p></div>
+ <div class="step" data-ph="2"><b>03 / 03</b><h3>Listos para bailar en primera.</h3><p>Acá va un texto corto del cierre.</p><a class="btn grad" style="margin-top:18px;align-self:flex-start">Leer la historia</a></div>
+</div></div></section>
 <section class="sec sec--alt" data-v="historias:tarjetas" id="historias-tarjetas"><div class="wrap">
  <div class="head"><div class="eyebrow">Lo que estamos haciendo</div><h2 class="title">Dos historias de este año.</h2></div>
  <div class="feat">
@@ -447,7 +465,9 @@ html[data-tono="claro"] .pline::before{background-image:url("data:image/svg+xml;
 <div class="vbar" id="vbar"><div class="vbar__h"><b>Opciones del boceto</b><span>Tocá una y la página cambia ahí mismo</span><button type="button" data-close aria-label="Ocultar">×</button></div>
 <div class="vbar__g"><span>Portada</span><div class="vbar__b" data-k="portada"><button data-val="video">Video con logo</button><button data-val="intro">Intro: el logo se arma</button><button data-val="banner">Banner que se arma y se va</button><button data-val="quieto">Logo quieto, frases al bajar</button><button data-val="fotop">Foto en la P</button></div></div>
 <div class="vbar__g"><span>Tono</span><div class="vbar__b" data-k="tono"><button data-val="oscuro">Verde oscuro</button><button data-val="claro">Claro, letras verde oscuro</button></div></div>
-<div class="vbar__g"><span>Lo que estamos haciendo</span><div class="vbar__b" data-k="historias"><button data-val="foto">Foto entera de fondo</button><button data-val="scroll">Contada con scroll</button><button data-val="tarjetas">Dos tarjetas con foto</button></div></div>
+<div class="vbar__g"><span>Fondo</span><div class="vbar__b" data-k="fondo"><button data-val="liso">Liso</button><button data-val="silueta">Con la silueta de la P</button><button data-val="contorno">Silueta más P en contorno</button></div></div>
+<div class="vbar__g"><span>Datos</span><div class="vbar__b" data-k="datos"><button data-val="foto">Sobre foto sin color</button><button data-val="liso">Sobre fondo liso</button></div></div>
+<div class="vbar__g"><span>Lo que estamos haciendo</span><div class="vbar__b" data-k="historias"><button data-val="foto">Foto entera de fondo</button><button data-val="scroll">Contada con scroll</button><button data-val="scrollfoto">Contada con scroll sobre la foto</button><button data-val="tarjetas">Dos tarjetas con foto</button></div></div>
 <div class="vbar__g"><span>Programas</span><div class="vbar__b" data-k="programas"><button data-val="tarjetas">Tarjetas que se dan vuelta</button><button data-val="fichas">Fichas desfasadas</button></div></div>
 <div class="vbar__g"><span>Novedades</span><div class="vbar__b" data-k="novedades"><button data-val="lista">Una grande y lista</button><button data-val="tarjetas">Tarjetas</button><button data-val="linea">Línea de tiempo</button></div></div>
 </div>
@@ -456,14 +476,14 @@ html[data-tono="claro"] .pline::before{background-image:url("data:image/svg+xml;
 (function(){
  // --- variantes: se quitan del documento las que no se eligieron
  var h=document.documentElement;
- var GO={historias:{foto:'#historias',scroll:'#historias-scroll',tarjetas:'#historias-tarjetas'},programas:{tarjetas:'#programas',fichas:'#programas-fichas'},novedades:{lista:'#novedades',tarjetas:'#novedades-tarjetas',linea:'#novedades-linea'}};
+ var GO={fondo:{liso:'#programas',silueta:'#programas',contorno:'#territorio'},datos:{foto:'#datos',liso:'#datos'},historias:{foto:'#historias',scroll:'#historias-scroll',scrollfoto:'#historias-scrollfoto',tarjetas:'#historias-tarjetas'},programas:{tarjetas:'#programas',fichas:'#programas-fichas'},novedades:{lista:'#novedades',tarjetas:'#novedades-tarjetas',linea:'#novedades-linea'}};
  function videosOn(){ document.querySelectorAll('video').forEach(function(v){ var vis=!!(v.offsetWidth||v.offsetHeight||v.getClientRects().length); if(vis){ if(v.autoplay&&v.paused) v.play().catch(function(){}); } else if(!v.paused) v.pause(); }); }
  function setV(k,val,scroll){ h.setAttribute('data-'+k,val); try{ var p=new URLSearchParams(location.search); p.set(k,val); history.replaceState(null,'',location.pathname+'?'+p.toString()+location.hash); }catch(e){}
    document.querySelectorAll('.vbar__b[data-k="'+k+'"] button').forEach(function(b){ b.classList.toggle('on',b.dataset.val===val); });
    if(k==='portada'){ var ld=document.getElementById('loader'); if(ld){ if(val==='banner'){ ld.classList.remove('off'); setTimeout(function(){ld.classList.add('off')},2100); } } if(scroll) window.scrollTo({top:0,behavior:'auto'}); }
-   else if(scroll && GO[k]){ var el=document.querySelector(GO[k][val]); if(el){ var y=el.getBoundingClientRect().top+window.scrollY-20; window.scrollTo({top:y,behavior:'auto'}); } }
+   else if(scroll && GO[k]){ var el=document.querySelector((k==='fondo'&&val!=='contorno'&&h.getAttribute('data-programas')==='fichas')?'#programas-fichas':GO[k][val]); if(el){ var y=el.getBoundingClientRect().top+window.scrollY-20; window.scrollTo({top:y,behavior:'auto'}); } }
    videosOn(); window.dispatchEvent(new Event('scroll')); }
- ['portada','tono','historias','programas','novedades'].forEach(function(k){ setV(k,h.getAttribute('data-'+k),false); });
+ ['portada','tono','fondo','datos','historias','programas','novedades'].forEach(function(k){ setV(k,h.getAttribute('data-'+k),false); });
  var bar=document.getElementById('vbar'), pill=document.getElementById('vpill');
  if(bar){ bar.querySelectorAll('.vbar__b button').forEach(function(b){ b.addEventListener('click',function(){ setV(b.parentElement.dataset.k,b.dataset.val,true); }); }); bar.querySelector('[data-close]').addEventListener('click',function(){ h.classList.add('vbar-off'); }); pill.addEventListener('click',function(){ h.classList.remove('vbar-off'); }); }
  // --- barra superior
@@ -477,8 +497,8 @@ html[data-tono="claro"] .pline::before{background-image:url("data:image/svg+xml;
  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; var el=e.target, t=+el.dataset.count, b=el.querySelector('b'), pre=el.dataset.prefix||'', suf=el.dataset.suffix||''; var t0=performance.now(); (function tick(now){ var k=Math.min(1,(now-t0)/3200); var v=t*(1-Math.pow(1-k,3)); b.innerHTML=(pre?'<em>'+pre+'</em>':'')+fmt(v)+suf; if(k<1) requestAnimationFrame(tick); })(t0); io.unobserve(el); }); },{threshold:.5});
  document.querySelectorAll('[data-count]').forEach(function(el){io.observe(el)});
  // --- historia contada con scroll
- var steps=[].slice.call(document.querySelectorAll('.step')), phs=[].slice.call(document.querySelectorAll('.story__ph img'));
- if(steps.length){ var so=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ steps.forEach(function(s){s.classList.remove('on')}); e.target.classList.add('on'); var i=+e.target.dataset.ph; phs.forEach(function(p,j){p.classList.toggle('on',j===i)}); } });},{rootMargin:'-42% 0px -42% 0px',threshold:0}); steps.forEach(function(s){so.observe(s)}); }
+ var steps=[].slice.call(document.querySelectorAll('.step'));
+ if(steps.length){ var so=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ var box=e.target.closest('[data-story]'); box.querySelectorAll('.step').forEach(function(s){s.classList.remove('on')}); e.target.classList.add('on'); var i=+e.target.dataset.ph; box.querySelectorAll('[data-ph-img]').forEach(function(p,j){p.classList.toggle('on',j===i)}); } });},{rootMargin:'-42% 0px -42% 0px',threshold:0}); steps.forEach(function(s){so.observe(s)}); }
  // --- programas: en pantallas táctiles, un toque da vuelta la tarjeta
  document.querySelectorAll('.pv').forEach(function(c){ c.addEventListener('click',function(e){ if(matchMedia('(hover:none)').matches){ e.preventDefault(); c.classList.toggle('flip'); } }); });
  // --- convenios: carrusel con flechas y avance automático
