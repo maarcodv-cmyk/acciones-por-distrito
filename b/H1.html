@@ -4,6 +4,7 @@
 (function(){ var p=new URLSearchParams(location.search), h=document.documentElement;
  var def={portada:'video',historias:'foto',programas:'tarjetas',novedades:'lista',tono:'oscuro',fondo:'silueta',datos:'foto',mapa:'encendido',respira:'no',boton:'no',banda:'no',buscando:'no',bar:'1'};
  Object.keys(def).forEach(function(k){ var v=p.get(k)||def[k]; h.setAttribute('data-'+k,v); });
+ try{ if(sessionStorage.getItem('h1-bar')==='off') h.classList.add('vbar-off'); }catch(e){}
 })();
 </script>
 <style>
@@ -323,14 +324,19 @@ html[data-novedades="lista"] [data-v="novedades:lista"],html[data-novedades="tar
 .social{position:fixed;right:18px;bottom:18px;z-index:55;display:flex;flex-direction:column;gap:10px}
 .social a{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.3);transition:transform .25s}.social a:hover{transform:translateY(-3px)}
 .social__wa{background:#25D366}.social__ig{background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF)}
-.vbar{position:fixed;left:14px;bottom:14px;z-index:60;background:#0B2A1F;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:12px 14px 14px;font-size:12px;box-shadow:0 10px 30px rgba(0,0,0,.35);width:min(92vw,340px);max-height:calc(100vh - 40px);overflow:auto}
+.vbar{position:fixed;right:0;top:0;bottom:0;z-index:60;background:#0B2A1F;color:#fff;border-left:1px solid rgba(255,255,255,.2);padding:16px 16px 20px;font-size:12px;box-shadow:-10px 0 30px rgba(0,0,0,.25);width:340px;overflow:auto}
+html:not(.vbar-off) body{margin-right:340px}
+html:not(.vbar-off) header{right:340px}
+html:not(.vbar-off) .social{right:358px}
+@media(max-width:900px){.vbar{width:100%;top:auto;max-height:60vh;border-left:0;border-top:1px solid rgba(255,255,255,.2)}html:not(.vbar-off) body{margin-right:0}html:not(.vbar-off) header{right:0}html:not(.vbar-off) .social{right:18px;bottom:62vh}}
 .vbar__h{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}.vbar__h b{font-size:13px}.vbar__h span{font-size:11px;color:#9FE6EA;flex:1}.vbar__h button{background:transparent;border:0;color:#fff;font-size:18px;line-height:1;cursor:pointer;padding:0 2px}
 .vbar__g{margin-top:8px}.vbar__g>span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9FE6EA;margin-bottom:5px}
 .vbar__b{display:flex;flex-wrap:wrap;gap:5px}.vbar__b button{font:600 12px "Encode Sans",sans-serif;background:#123D2A;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 10px;cursor:pointer}
 .vbar__b button.on{background:#25B4BD;color:#0B2A1F;border-color:#25B4BD}
-.vpill{position:fixed;left:14px;bottom:14px;z-index:60;display:none;font:700 13px "Encode Sans",sans-serif;background:#25B4BD;color:#0B2A1F;border:0;border-radius:999px;padding:11px 16px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.vpill{position:fixed;right:18px;bottom:150px;z-index:60;display:none;font:700 13px "Encode Sans",sans-serif;background:#25B4BD;color:#0B2A1F;border:0;border-radius:999px;padding:11px 16px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.35)}
 html.vbar-off .vbar{display:none}html.vbar-off .vpill{display:block}
 html[data-bar="0"] .vbar,html[data-bar="0"] .vpill{display:none!important}
+html[data-bar="0"] body{margin-right:0}html[data-bar="0"] header{right:0}html[data-bar="0"] .social{right:18px}
 @media(max-width:900px){.ng-grid{grid-template-columns:1fr 1fr}.ng-main{aspect-ratio:4/3}.theme span{display:none}.sf .wrap{padding-top:90px}.feat a{aspect-ratio:4/3}.wrap{padding:0 18px}header .wrap{height:66px}nav{display:none}.logo{height:36px}.sec{padding:56px 0}.head--row{flex-direction:column;align-items:flex-start;gap:14px}
  .quick .wrap{grid-template-columns:1fr}.quick .lbl{padding:16px 0 4px}.quick a{border-left:0;border-top:1px solid rgba(255,255,255,.35);padding:14px 0}
  .vh{height:160svh}.vh__title{padding:0 18px 70px}.vh__title h1{font-size:40px}.vh__cta{flex-direction:column}.vh__logo img{width:70vw}
@@ -492,7 +498,7 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
 </div></footer>
 <div class="social"><a class="social__wa" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.1.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a><a class="social__ig" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a></div>
 <button class="vpill" id="vpill" type="button">Opciones del boceto</button>
-<div class="vbar" id="vbar"><div class="vbar__h"><b>Opciones del boceto</b><span>Tocá una y la página cambia ahí mismo</span><button type="button" data-close aria-label="Ocultar">×</button></div>
+<div class="vbar" id="vbar"><div class="vbar__h"><b>Opciones del boceto</b><span>Tocá una y la página cambia ahí mismo</span><button type="button" data-close aria-label="Ocultar" title="Ocultar">×</button></div>
 <div class="vbar__g"><span>Portada</span><div class="vbar__b" data-k="portada"><button data-val="video">Video con logo</button><button data-val="intro">Intro: el logo se arma</button><button data-val="banner">Banner que se arma y se va</button><button data-val="quieto">Logo quieto, frases al bajar</button><button data-val="recuadro">Video en un recuadro grande</button></div></div>
 <div class="vbar__g"><span>Tono</span><div class="vbar__b" data-k="tono"><button data-val="oscuro">Verde oscuro</button><button data-val="blanco">Blanco con turquesa y verde</button><button data-val="claro">Claro, letras verde oscuro</button></div></div>
 <div class="vbar__g"><span>Fondo</span><div class="vbar__b" data-k="fondo"><button data-val="liso">Liso</button><button data-val="silueta">Con la silueta de la P</button><button data-val="contorno">Silueta más P en contorno</button><button data-val="bloques">Bloques de verde pleno y lima</button></div></div>
@@ -518,7 +524,7 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
  ['portada','tono','fondo','datos','historias','programas','novedades','mapa','respira','boton','banda','buscando'].forEach(function(k){ setV(k,h.getAttribute('data-'+k),false); });
  var bar=document.getElementById('vbar'), pill=document.getElementById('vpill');
  var th=document.getElementById('theme'); if(th){ th.addEventListener('click',function(){ var c=h.getAttribute('data-tono')!=='oscuro'; setV('tono',c?'oscuro':'blanco',false); th.querySelector('span').textContent=c?'Modo claro':'Modo oscuro'; }); }
- if(bar){ bar.querySelectorAll('.vbar__b button').forEach(function(b){ b.addEventListener('click',function(){ setV(b.parentElement.dataset.k,b.dataset.val,true); }); }); bar.querySelector('[data-close]').addEventListener('click',function(){ h.classList.add('vbar-off'); }); pill.addEventListener('click',function(){ h.classList.remove('vbar-off'); }); }
+ if(bar){ bar.querySelectorAll('.vbar__b button').forEach(function(b){ b.addEventListener('click',function(){ setV(b.parentElement.dataset.k,b.dataset.val,true); }); }); bar.querySelector('[data-close]').addEventListener('click',function(){ h.classList.add('vbar-off'); try{sessionStorage.setItem('h1-bar','off')}catch(e){} window.dispatchEvent(new Event('resize')); }); pill.addEventListener('click',function(){ h.classList.remove('vbar-off'); try{sessionStorage.setItem('h1-bar','on')}catch(e){} window.dispatchEvent(new Event('resize')); }); }
  // --- barra superior
  var hd=document.querySelector('header'); var last=0;
  function onS(){ var y=window.scrollY; if(y>120 && y>last+4) hd.classList.add('hide'); else if(y<last-4||y<=120) hd.classList.remove('hide'); last=y; }
