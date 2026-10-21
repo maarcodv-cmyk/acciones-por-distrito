@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600;700;800;900&display=swap">
 <script>
 (function(){ var p=new URLSearchParams(location.search), h=document.documentElement;
- var def={portada:'video',historias:'foto',programas:'tarjetas',novedades:'lista',tono:'oscuro',fondo:'silueta',datos:'foto',mapa:'encendido',respira:'no',boton:'no',banda:'si',buscando:'no',convenios:'tarjetas',bar:'1'};
- Object.keys(def).forEach(function(k){ var v=p.get(k); if(!v){ try{ v=sessionStorage.getItem('h1-opt-'+k); }catch(e){} } h.setAttribute('data-'+k,v||def[k]); });
+ var def={portada:'intro',historias:'cards',programas:'tarjetas',novedades:'lista',tono:'blanco',fondo:'silueta',datos:'liso',mapa:'no',linea:'no',respira:'no',boton:'si',banda:'si',buscando:'no',convenios:'banner',letras:'sombra',bar:'1'};
+ var ok={tono:['blanco','oscuro'],letras:['sombra','relieve','oscurecer'],banda:['si','no'],linea:['si','no'],mapa:['si','no'],bar:['0','1']}; Object.keys(def).forEach(function(k){ var v=p.get(k); if(!v){ try{ v=sessionStorage.getItem('h1c-opt-'+k); }catch(e){} } if(v && !(ok[k]&&ok[k].indexOf(v)>=0)) v=null; h.setAttribute('data-'+k,v||def[k]); });
  try{ if(sessionStorage.getItem('h1-bar')==='off') h.classList.add('vbar-off'); }catch(e){}
 })();
 </script>
@@ -134,8 +134,12 @@ html:is([data-tono="claro"],[data-tono="blanco"]) header{background:rgba(251,252
 @keyframes lgT{from{opacity:0;transform:translate(6px,-8px) scale(.6)}to{opacity:1;transform:none}}
 @keyframes lgW{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
 @keyframes hint{to{opacity:1}}
-.intro,.intro__vp{background:var(--deep)}
-.intro__bg .bigp path{stroke:rgba(127,227,232,.18)}
+.intro{height:260svh}.intro,.intro__vp{background:var(--g1)}
+.intro__bg .bigp path{stroke:rgba(39,157,46,.28)}
+.intro .lg-w{fill:var(--i)}html[data-tono="oscuro"] .intro .lg-w{fill:#fff}
+.intro__hint{color:var(--i3)}.intro__hint span{border-color:var(--i3)}html[data-tono="oscuro"] .intro__hint{color:#C3CECB}
+.intro__line{font-size:clamp(30px,4.6vw,66px);text-shadow:0 4px 24px rgba(0,0,0,.5)}.intro__line[data-line="2"]{top:calc(82px + 7vh + 1.12em)}
+.intro__end{margin-top:34vh;max-width:640px}.intro__end p{color:#fff;font-weight:500}
 .intro__end h1{font-family:"Encode Sans",system-ui,sans-serif;font-weight:900;letter-spacing:-.035em;line-height:.98;text-transform:none;font-size:clamp(40px,7vw,92px)}
 .intro__end .eyebrow{color:#7FE3E8}.intro__end .cta .btn.ghost{color:#fff}
 .intro__line{font-family:"Encode Sans",system-ui,sans-serif}
@@ -236,6 +240,23 @@ html[data-datos="liso"] .datos__bg{display:none}
 .sf__head h2{font-size:clamp(34px,4.4vw,64px);font-weight:900;letter-spacing:-.035em;line-height:.98;margin-top:12px;color:#fff}
 .sf__head .eyebrow{color:#9FE6EA}
 .sf .step{color:#fff}.sf .step b{color:#B6F36F}.sf .step p{color:#DDEFE3}
+.cs{position:relative;height:calc(var(--n) * 72vh + 40vh)}
+.cs .wrap{position:sticky;top:86px}
+.cs__card{position:relative;height:calc(100vh - 110px);min-height:520px;border-radius:var(--r);overflow:hidden;background:var(--g2);color:#fff}
+.cs__card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s}.cs__card img.on{opacity:1}
+.cs__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.62) 0%,rgba(11,42,31,.18) 34%,rgba(11,42,31,0) 55%)}
+.cs__txt{position:absolute;left:40px;right:40px;bottom:36px;max-width:720px}
+.cs__txt .eyebrow{color:#9FE6EA}
+.cs__step{display:none}.cs__step.on{display:block;animation:csin .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes csin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cs__step h3{font-size:clamp(28px,3.4vw,50px);font-weight:900;letter-spacing:-.035em;line-height:.98;margin:10px 0 0;color:#fff}
+.cs__step p{margin:12px 0 0;font-size:17px;color:#EAF7EF;max-width:52ch}
+.cs__txt .btn{margin-top:18px}
+.cs__dots{position:absolute;right:30px;bottom:38px;display:flex;gap:8px}.cs__dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45)}.cs__dots i.on{background:#fff}
+html[data-letras="sombra"] .cs__txt,html[data-letras="sombra"] .al__txt{text-shadow:0 2px 6px rgba(0,0,0,.45),0 6px 26px rgba(0,0,0,.45)}
+html[data-letras="relieve"] .cs__txt,html[data-letras="relieve"] .al__txt{text-shadow:0 1px 0 rgba(255,255,255,.28),0 -1px 0 rgba(0,0,0,.35),0 4px 18px rgba(0,0,0,.55)}
+html[data-letras="relieve"] .cs__shade,html[data-letras="relieve"] .al__shade{background:linear-gradient(0deg,rgba(11,42,31,.4) 0%,rgba(11,42,31,0) 40%)}
+html[data-letras="oscurecer"] .cs__shade,html[data-letras="oscurecer"] .al__shade{background:linear-gradient(0deg,rgba(11,42,31,.92) 0%,rgba(11,42,31,.5) 45%,rgba(11,42,31,.08) 100%)}
 /* ===== historias: dos tarjetas con foto entera ===== */
 .feat{display:grid;grid-template-columns:1fr;gap:26px}
 .feat a{position:relative;display:block;aspect-ratio:21/9;border-radius:var(--r);overflow:hidden;color:#fff}
@@ -255,12 +276,13 @@ html[data-datos="liso"] .datos__bg{display:none}
 .pv__front::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.92) 0%,rgba(11,42,31,.25) 55%,rgba(11,42,31,0) 100%)}
 .pv__tag{position:absolute;left:18px;top:18px;z-index:2;background:var(--c);color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:8px 8px 8px 2px}
 .pv__tag--pill{background:#fff;color:#1F2A2A;font-size:13px;letter-spacing:0;text-transform:none;padding:9px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
-.pv__why{position:absolute;left:22px;right:22px;bottom:44px;z-index:2;margin:0;font-size:clamp(18px,1.5vw,22px);font-weight:700;line-height:1.25;letter-spacing:-.01em}
-.pv__back{transform:rotateY(180deg) translateZ(1px);background:var(--c)}
-.pv__back img{opacity:.35;filter:saturate(.6)}
+.pv__why{position:absolute;left:22px;right:22px;bottom:24px;z-index:2;margin:0;font-size:clamp(24px,2.1vw,32px);font-weight:900;line-height:1.04;letter-spacing:-.03em;text-shadow:0 2px 14px rgba(0,0,0,.35)}
+.pv__back{transform:rotateY(180deg) translateZ(1px);background:#0B2A1F}
+.pv__back img{opacity:1}
+.pv__back::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.9) 0%,rgba(11,42,31,.4) 42%,rgba(11,42,31,0) 70%)}
 .pv__bt{position:absolute;left:22px;right:22px;bottom:22px;z-index:2}
 .pv__cat{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:8px}
-.pv__bt h3{font-size:clamp(26px,2.4vw,34px);font-weight:900;letter-spacing:-.03em;line-height:1;color:#fff}
+.pv__bt h3{font-size:clamp(19px,1.6vw,23px);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:#fff}
 .pv__btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-weight:800;font-size:13px;letter-spacing:.08em;color:#fff;border-bottom:2px solid #fff;padding-bottom:4px}
 .pv-grid--fichas .pv:nth-child(3n+2){margin-top:40px}
 .pv-grid--fichas .pv__in{aspect-ratio:3/4.3}
@@ -274,7 +296,12 @@ html[data-datos="liso"] .datos__bg{display:none}
 .cv__t{padding:20px 22px 24px}.cv__t h3{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--i)}.cv__t p{color:var(--i2);font-size:15px;margin:10px 0 0}
 .cv__nofoto{position:absolute;inset:0;display:grid;place-items:center;background:#1F3A34;color:#9FE6EA;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
 .cv__nav{display:flex;gap:8px;justify-content:flex-end;margin-bottom:18px}
-html[data-convenios="marquee"] .cv__nav{display:none}
+html[data-convenios="marquee"] .cv__nav,html[data-convenios="banner"] .cv__nav{display:none}
+.al{position:relative;aspect-ratio:21/9;min-height:440px;border-radius:var(--r);overflow:hidden;background:var(--g2);color:#fff}
+.al__slide{position:absolute;inset:0;opacity:0;transition:opacity 1s}.al__slide.on{opacity:1}.al__slide img{width:100%;height:100%;object-fit:cover;transition:transform 7s linear}.al__slide.on img{transform:scale(1.04)}
+.al__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.62) 0%,rgba(11,42,31,.2) 40%,rgba(11,42,31,0) 65%)}
+.al__txt{position:absolute;left:40px;right:40px;bottom:54px;max-width:680px}.al__txt .eyebrow{color:#9FE6EA}.al__txt h3{font-size:clamp(28px,3.6vw,52px);font-weight:900;letter-spacing:-.035em;line-height:.98;margin:10px 0 0;color:#fff}.al__txt p{margin:12px 0 0;font-size:17px;color:#EAF7EF;max-width:52ch}.al__txt .sx-link{color:#fff;margin-top:14px}
+.al__dots{position:absolute;left:0;right:0;bottom:20px;display:flex;justify-content:center;gap:9px;z-index:2}.al__dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer}.al__dots i.on{background:#fff}
 html[data-convenios="tarjetas"] [data-v="convenios:tarjetas"],html[data-convenios="entera"] [data-v="convenios:entera"],html[data-convenios="marquee"] [data-v="convenios:marquee"]{display:block}
 .cv__it--full{position:relative;aspect-ratio:4/5;color:#fff;border:0;background:#0B2A1F}.cv__it--full .cv__ph{position:absolute;inset:0;aspect-ratio:auto}.cv__it--full .cv__ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.95) 0%,rgba(11,42,31,.55) 45%,rgba(11,42,31,.05) 100%)}
 .cv__it--full .cv__logo{bottom:auto;top:16px}.cv__it--full .cv__t{position:absolute;left:0;right:0;bottom:0;padding:22px 22px 24px}.cv__it--full .cv__t h3{color:#fff}.cv__it--full .cv__t p{color:#DDEFE3}.cv__it--full .sx-link{color:#9FE6EA}
@@ -347,7 +374,7 @@ footer .bot{grid-column:1/-1;border-top:1px solid #4A5555;padding-top:20px;margi
 html[data-portada="video"] [data-v="portada:video"],html[data-portada="banner"] [data-v="portada:video"],html[data-portada="banner"] [data-v="portada:banner"],html[data-portada="intro"] [data-v="portada:intro"],html[data-portada="quieto"] [data-v="portada:quieto"],html[data-portada="recuadro"] [data-v="portada:recuadro"],html[data-portada="frase"] [data-v="portada:frase"]{display:block}
 html[data-portada="banner"] #loader{display:grid}
 html[data-buscando="si"] [data-v="buscando:si"]{display:block}
-html[data-historias="foto"] [data-v="historias:foto"],html[data-historias="scroll"] [data-v="historias:scroll"],html[data-historias="tarjetas"] [data-v="historias:tarjetas"],html[data-historias="scrollfoto"] [data-v="historias:scrollfoto"],html[data-historias="scrollfoto2"] [data-v="historias:scrollfoto2"]{display:block}
+html[data-historias="foto"] [data-v="historias:foto"],html[data-historias="scroll"] [data-v="historias:scroll"],html[data-historias="tarjetas"] [data-v="historias:tarjetas"],html[data-historias="scrollfoto"] [data-v="historias:scrollfoto"],html[data-historias="scrollfoto2"] [data-v="historias:scrollfoto2"],html[data-historias="cards"] [data-v="historias:cards"],html[data-linea="si"] [data-v="linea:si"],html[data-mapa="si"] [data-v="mapa:si"],html[data-convenios="banner"] [data-v="convenios:banner"]{display:block}
 html[data-programas="tarjetas"] [data-v="programas:tarjetas"],html[data-programas="fichas"] [data-v="programas:fichas"]{display:block}
 html[data-novedades="lista"] [data-v="novedades:lista"],html[data-novedades="tarjetas"] [data-v="novedades:tarjetas"],html[data-novedades="linea"] [data-v="novedades:linea"]{display:block}
 .social{position:fixed;right:18px;bottom:18px;z-index:55;display:flex;flex-direction:column;gap:10px}
@@ -418,11 +445,11 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
 .form .ok{display:none;grid-column:1/-1;background:var(--sf);border:1px solid var(--a);border-radius:var(--r);padding:24px;font-size:17px}
 .inner .vbar__g:first-child{display:none}
 .share{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0 0}.share a{font-size:13px;font-weight:700;border:1px solid var(--ln);padding:9px 14px;border-radius:999px;color:var(--i)}
-.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.gal a{display:block;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden}.gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.gal a:hover img{transform:scale(1.05)}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:18px}.gal a{display:block;aspect-ratio:3/2;border-radius:var(--r);overflow:hidden}.gal a:first-child{grid-column:1/-1;aspect-ratio:21/9}.gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.gal a:hover img{transform:scale(1.05)}
 @media(max-width:900px){.gal{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){.phero{padding:110px 0 50px}.two{grid-template-columns:1fr;gap:30px}.aside{position:static}.ngrid{grid-template-columns:1fr}.aut{grid-template-columns:1fr 1fr}.vals{grid-template-columns:1fr 1fr}.cursos{grid-template-columns:1fr}.form{grid-template-columns:1fr}}
 </style></head><body class="inner">
-<header><div class="wrap"><a href="H1.html"><img class="logo" src="logo.svg" alt="Fundación Banco Provincia"></a><nav><a href="H1.html">Inicio</a><a href="H1-fundacion.html">La Fundación</a><a href="H1-programas.html">Programas</a><a href="H1-formacion.html">Formación</a><a class="on" href="H1-novedades.html">Novedades</a><a href="H1-territorio.html">Territorio</a></nav><a class="btn grad" href="H1-participar.html" style="padding:11px 18px;font-size:14px">Participar</a><button class="theme" id="theme" type="button"><i></i><span>Modo claro</span></button><button class="burger" id="burger" type="button" aria-label="Menú"><i></i></button></div><nav class="mnav" id="mnav"><a href="H1.html">Inicio</a><a href="H1-fundacion.html">La Fundación</a><a href="H1-programas.html">Programas</a><a href="H1-formacion.html">Formación</a><a class="on" href="H1-novedades.html">Novedades</a><a href="H1-territorio.html">Territorio</a><a class="btn grad" href="H1-participar.html">Participar</a></nav></header>
+<header><div class="wrap"><a href="H1.html"><img class="logo" src="logo.svg" alt="Fundación Banco Provincia"></a><nav><a href="H1.html">Inicio</a><a href="H1-fundacion.html">La Fundación</a><a href="H1.html#programas">Lo que hacemos</a><a href="H1.html#historias">Formación</a><a class="on" href="H1-novedades.html">Novedades</a></nav><a class="btn grad" href="H1-participar.html" style="padding:11px 18px;font-size:14px">Participar</a><button class="theme" id="theme" type="button"><i></i><span>Modo noche</span></button><button class="burger" id="burger" type="button" aria-label="Menú"><i></i></button></div><nav class="mnav" id="mnav"><a href="H1.html">Inicio</a><a href="H1-fundacion.html">La Fundación</a><a href="H1.html#programas">Lo que hacemos</a><a href="H1.html#historias">Formación</a><a class="on" href="H1-novedades.html">Novedades</a><a class="btn grad" href="H1-participar.html">Participar</a></nav></header>
 <section class="phero pbg" style="padding-bottom:30px"><div class="wrap"><div class="crumb"><a href="H1-novedades.html">Novedades</a> · Se armó la orquesta · 7 de agosto de 2024</div><h1>Más proyectos musicales en Lanús</h1></div></section>
 <section class="sec pbg" style="padding-top:0"><div class="wrap"><div class="two"><div class="prose"><img src="1968.jpg" alt="">
 <p>El 7 de agosto, en un encuentro que se realizó en la municipalidad de Lanús, presentamos el equipamiento tecnológico que aportamos desde la Fundación y Provincia NET para la instalación de este nuevo espacio para la producción y difusión de iniciativas musicales realizadas por jóvenes.</p>
@@ -437,39 +464,33 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
 <aside class="aside"><div class="eyebrow">Más novedades</div><div style="display:grid;gap:14px;margin-top:16px"><a class="news-item" href="H1-novedad-2429.html"><img src="2429.jpg" alt=""><div><div class="d">Se armó la orquesta</div><h4>Ezeiza ya cuenta con un nuevo centro de creación musical para jóvenes artistas</h4></div></a><a class="news-item" href="H1-novedad-2261.html"><img src="2261.jpg" alt=""><div><div class="d">Se armó la orquesta</div><h4>La Orquesta Santa Clara de Tigre ya es una sinfónica</h4></div></a><a class="news-item" href="H1-novedad-2189.html"><img src="2189.jpg" alt=""><div><div class="d">Se armó la orquesta</div><h4>Entrega de instrumentos a la orquesta escuela de San Isidro</h4></div></a></div></aside></div></div></section>
 <footer><div class="wrap">
  <div><img src="logo.svg" alt="" style="height:40px;filter:brightness(0) invert(1);margin-bottom:16px"><div>Reconquista 46, piso 9, Ciudad de Buenos Aires<br>info@fundacionbapro.org.ar · (011) 4331-2070</div></div>
- <div><b>Programas</b><a href="H1-programa-ver-para-aprender.html">Ver para aprender</a><br><a href="H1-programa-a-jugar-a-la-plaza.html">A jugar a la plaza</a><br><a href="H1-programa-se-armo-la-orquesta.html">Se armó la orquesta</a><br><a href="H1-programa-clubes-en-forma.html">Clubes en forma</a><br><a href="H1-programas.html">Todos los programas</a></div>
- <div><b>La Fundación</b><a href="H1-fundacion.html">Quiénes somos</a><br><a href="H1-fundacion.html#autoridades">Autoridades</a><br><a href="H1-fundacion.html#alianzas">Alianzas</a><br><a href="H1-participar.html">Participar</a></div>
+ <div><b>Programas</b><a href="H1-programa-ver-para-aprender.html">Ver para aprender</a><br><a href="H1-programa-a-jugar-a-la-plaza.html">A jugar a la plaza</a><br><a href="H1-programa-se-armo-la-orquesta.html">Se armó la orquesta</a><br><a href="H1-programa-clubes-en-forma.html">Clubes en forma</a><br><a href="H1.html#programas">Lo que hacemos</a></div>
+ <div><b>La Fundación</b><a href="H1-fundacion.html">Quiénes somos</a><br><a href="H1-fundacion.html#autoridades">Autoridades</a><br><a href="H1.html#convenios">Alianzas</a><br><a href="H1-participar.html">Participar</a></div>
  <div><b>Seguinos</b><a href="https://www.instagram.com/fundacion.banco.provincia/" target="_blank" rel="noopener">Instagram</a><br><a href="https://www.youtube.com/channel/UCGnATTlVPL9o2Gvfxpv4YCA" target="_blank" rel="noopener">YouTube</a><br><a href="https://www.facebook.com/fundacionbancoprovincia/" target="_blank" rel="noopener">Facebook</a></div>
  <div class="bot"><span>© 2026 Fundación Banco Provincia</span><span>Privacidad · Accesibilidad</span></div>
 </div></footer>
 <div class="social"><a class="social__wa" href="https://wa.me/NUMERO_PENDIENTE" aria-label="WhatsApp" title="Falta el número de WhatsApp de la Fundación"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.1.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a><a class="social__ig" href="https://www.instagram.com/fundacion.banco.provincia/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a></div>
 <button class="vpill" id="vpill" type="button">Opciones del boceto</button>
-<div class="vbar" id="vbar"><div class="vbar__h"><b>Opciones del boceto</b><span>Tocá una y la página cambia ahí mismo</span><button type="button" data-close aria-label="Ocultar" title="Ocultar">×</button></div>
-<div class="vbar__g"><span>Portada</span><div class="vbar__b" data-k="portada"><button data-val="video">Video con logo</button><button data-val="intro">Intro: el logo se arma</button><button data-val="banner">Banner que se arma y se va</button><button data-val="quieto">Logo quieto, frases al bajar</button><button data-val="recuadro">Video en un recuadro grande</button><button data-val="frase">Frase que cambia al bajar, sobre fotos</button></div></div>
-<div class="vbar__g"><span>Tono</span><div class="vbar__b" data-k="tono"><button data-val="oscuro">Verde oscuro</button><button data-val="blanco">Blanco con turquesa y verde</button><button data-val="claro">Claro, letras verde oscuro</button></div></div>
-<div class="vbar__g"><span>Fondo</span><div class="vbar__b" data-k="fondo"><button data-val="liso">Liso</button><button data-val="silueta">Con la silueta de la P</button><button data-val="contorno">Silueta más P en contorno</button><button data-val="bloques">Bloques de verde pleno y lima</button></div></div>
-<div class="vbar__g"><span>Datos</span><div class="vbar__b" data-k="datos"><button data-val="foto">Sobre foto sin color</button><button data-val="liso">Sobre fondo liso</button></div></div>
-<div class="vbar__g"><span>Lo que estamos haciendo</span><div class="vbar__b" data-k="historias"><button data-val="foto">Foto entera de fondo</button><button data-val="scroll">Contada con scroll</button><button data-val="scrollfoto">Sobre la foto, todo centrado</button><button data-val="scrollfoto2">Sobre la foto, título a la izquierda y textos grandes</button><button data-val="tarjetas">Dos tarjetas con foto</button></div></div>
-<div class="vbar__g"><span>Programas</span><div class="vbar__b" data-k="programas"><button data-val="tarjetas">Tarjetas que se dan vuelta</button><button data-val="fichas">Fichas desfasadas</button></div></div>
-<div class="vbar__g"><span>Convenios</span><div class="vbar__b" data-k="convenios"><button data-val="tarjetas">Carrusel de tarjetas</button><button data-val="entera">Carrusel con la foto entera</button><button data-val="marquee">Pasa solo, lento, con la foto entera</button></div></div>
-<div class="vbar__g"><span>Novedades</span><div class="vbar__b" data-k="novedades"><button data-val="lista">Una grande y lista</button><button data-val="tarjetas">Tarjetas</button><button data-val="grilla">Grilla de revista</button></div></div>
-<div class="vbar__g"><span>Mapa</span><div class="vbar__b" data-k="mapa"><button data-val="encendido">Se enciende al llegar, con ficha</button><button data-val="clasico">Buscador, filtros y ficha</button></div></div>
-<div class="vbar__g"><span>Detalles</span><div class="vbar__b" data-k="respira"><button data-val="no">Fotos quietas</button><button data-val="si">Fotos que respiran</button></div><div class="vbar__b" data-k="boton" style="margin-top:5px"><button data-val="no">Sin botón de modo claro</button><button data-val="si">Botón de modo claro en la barra</button></div><div class="vbar__b" data-k="buscando" style="margin-top:5px"><button data-val="no">Sin la barra "¿Qué estás buscando?"</button><button data-val="si">Con la barra "¿Qué estás buscando?"</button></div><div class="vbar__b" data-k="banda" style="margin-top:5px"><button data-val="no">Alianzas sin zócalo de logos</button><button data-val="si">Con zócalo de logos que pasa</button></div></div>
+<div class="vbar" id="vbar"><div class="vbar__h"><b>Lo que queda por decidir</b><span>Lo demás ya está definido por la Fundación</span><button type="button" data-close aria-label="Ocultar" title="Ocultar">×</button></div>
+<div class="vbar__g"><span>Letras sobre las fotos</span><div class="vbar__b" data-k="letras"><button data-val="sombra">Con sombra, foto clara</button><button data-val="relieve">Con relieve, foto más clara</button><button data-val="oscurecer">Foto oscurecida (como antes)</button></div></div>
+<div class="vbar__g"><span>Zócalo de logos en alianzas</span><div class="vbar__b" data-k="banda"><button data-val="si">Con zócalo</button><button data-val="no">Sin zócalo</button></div></div>
+<div class="vbar__g"><span>Secciones apagadas (en WordPress se prenden desde el panel)</span><div class="vbar__b" data-k="linea"><button data-val="no">Línea de tiempo apagada</button><button data-val="si">Mostrar línea de tiempo</button></div><div class="vbar__b" data-k="mapa" style="margin-top:5px"><button data-val="no">Mapa apagado</button><button data-val="si">Mostrar mapa</button></div></div>
+<div class="vbar__g"><span>Modo</span><div class="vbar__b" data-k="tono"><button data-val="blanco">Día (el elegido)</button><button data-val="oscuro">Noche</button></div></div>
 </div>
 <script>
 (function(){
  // --- variantes: se quitan del documento las que no se eligieron
  var h=document.documentElement;
- var GO={fondo:{liso:'#programas',silueta:'#programas',contorno:'#territorio',bloques:'#convenios'},mapa:{encendido:'#territorio',clasico:'#territorio'},respira:{si:'#historias',no:'#historias'},boton:{si:'#datos',no:'#datos'},banda:{si:'#convenios',no:'#convenios'},buscando:{si:'#datos',no:'#datos'},datos:{foto:'#datos',liso:'#datos'},historias:{foto:'#historias',scroll:'#historias-scroll',scrollfoto:'#historias-scrollfoto',scrollfoto2:'#historias-scrollfoto2',tarjetas:'#historias-tarjetas'},convenios:{tarjetas:'#convenios',entera:'#convenios',marquee:'#convenios'},programas:{tarjetas:'#programas',fichas:'#programas-fichas'},novedades:{lista:'#novedades',tarjetas:'#novedades-tarjetas',grilla:'#novedades-grilla'}};
+ var GO={letras:{sombra:'#historias',relieve:'#historias',oscurecer:'#historias'},linea:{si:'#linea',no:'#novedades'},fondo:{liso:'#programas',silueta:'#programas',contorno:'#territorio',bloques:'#convenios'},mapa:{si:'#territorio',no:'#novedades'},respira:{si:'#historias',no:'#historias'},boton:{si:'#datos',no:'#datos'},banda:{si:'#convenios',no:'#convenios'},buscando:{si:'#datos',no:'#datos'},datos:{foto:'#datos',liso:'#datos'},historias:{foto:'#historias',scroll:'#historias-scroll',scrollfoto:'#historias-scrollfoto',scrollfoto2:'#historias-scrollfoto2',tarjetas:'#historias-tarjetas'},convenios:{tarjetas:'#convenios',entera:'#convenios',marquee:'#convenios'},programas:{tarjetas:'#programas',fichas:'#programas-fichas'},novedades:{lista:'#novedades',tarjetas:'#novedades-tarjetas',grilla:'#novedades-grilla'}};
  function videosOn(){ document.querySelectorAll('video').forEach(function(v){ var vis=!!(v.offsetWidth||v.offsetHeight||v.getClientRects().length); if(vis){ if(v.autoplay&&v.paused) v.play().catch(function(){}); } else if(!v.paused) v.pause(); }); }
- function setV(k,val,scroll){ h.setAttribute('data-'+k,val); try{ sessionStorage.setItem('h1-opt-'+k,val); }catch(e){} try{ var p=new URLSearchParams(location.search); p.set(k,val); history.replaceState(null,'',location.pathname+'?'+p.toString()+location.hash); }catch(e){}
+ function setV(k,val,scroll){ h.setAttribute('data-'+k,val); try{ sessionStorage.setItem('h1c-opt-'+k,val); }catch(e){} try{ var p=new URLSearchParams(location.search); p.set(k,val); history.replaceState(null,'',location.pathname+'?'+p.toString()+location.hash); }catch(e){}
    document.querySelectorAll('.vbar__b[data-k="'+k+'"] button').forEach(function(b){ b.classList.toggle('on',b.dataset.val===val); });
    if(k==='portada'){ var ld=document.getElementById('loader'); if(ld){ if(val==='banner'){ ld.classList.remove('off'); setTimeout(function(){ld.classList.add('off')},2100); } } if(scroll) window.scrollTo({top:0,behavior:'auto'}); }
    else if(scroll && GO[k]){ var el=document.querySelector((k==='fondo'&&val!=='contorno'&&h.getAttribute('data-programas')==='fichas')?'#programas-fichas':GO[k][val]); if(el){ var y=el.getBoundingClientRect().top+window.scrollY-20; window.scrollTo({top:y,behavior:'auto'}); } }
-   if(k==='mapa' && window.__paintAll) window.__paintAll(val==='clasico'); if((k==='boton'||k==='buscando') && scroll){ var q=document.querySelector('.quick'); window.scrollTo({top:(k==='buscando'&&q)?q.getBoundingClientRect().top+window.scrollY-300:0,behavior:'auto'}); } videosOn(); window.dispatchEvent(new Event('scroll')); }
- ['portada','tono','fondo','datos','historias','programas','novedades','mapa','respira','boton','banda','buscando','convenios'].forEach(function(k){ setV(k,h.getAttribute('data-'+k),false); });
+   if(k==='mapa' && val==='si' && window.__lightMap) setTimeout(window.__lightMap,400); if((k==='boton'||k==='buscando') && scroll){ var q=document.querySelector('.quick'); window.scrollTo({top:(k==='buscando'&&q)?q.getBoundingClientRect().top+window.scrollY-300:0,behavior:'auto'}); } videosOn(); window.dispatchEvent(new Event('scroll')); }
+ ['portada','tono','fondo','datos','historias','programas','novedades','mapa','linea','respira','boton','banda','buscando','convenios','letras'].forEach(function(k){ setV(k,h.getAttribute('data-'+k),false); });
  var bar=document.getElementById('vbar'), pill=document.getElementById('vpill');
- var th=document.getElementById('theme'); if(th){ th.addEventListener('click',function(){ var c=h.getAttribute('data-tono')!=='oscuro'; setV('tono',c?'oscuro':'blanco',false); th.querySelector('span').textContent=c?'Modo claro':'Modo oscuro'; }); }
+ var th=document.getElementById('theme'); if(th){ th.addEventListener('click',function(){ var c=h.getAttribute('data-tono')!=='oscuro'; setV('tono',c?'oscuro':'blanco',false); th.querySelector('span').textContent=c?'Modo noche':'Modo día'; }); }
  if(bar){ bar.querySelectorAll('.vbar__b button').forEach(function(b){ b.addEventListener('click',function(){ setV(b.parentElement.dataset.k,b.dataset.val,true); }); }); bar.querySelector('[data-close]').addEventListener('click',function(){ h.classList.add('vbar-off'); try{sessionStorage.setItem('h1-bar','off')}catch(e){} window.dispatchEvent(new Event('resize')); }); pill.addEventListener('click',function(){ h.classList.remove('vbar-off'); try{sessionStorage.setItem('h1-bar','on')}catch(e){} window.dispatchEvent(new Event('resize')); }); }
  // --- animaciones al entrar y al scrollear: lo que aparece sube y se enciende
  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ var SEL='.head,.big>div,.pv,.nc,.cv__it,.feat a,.hf__box,.quote,.aut>div,.vals>div,.curso,.prose>*,.stat>div,.news-item,.ng-main,.news-main,.tl__it,.phero h1,.phero .lead,.phero .crumb,.phero .pend,.chips-f,.form label,.faq details,.sf__head,.story__fix,.lightcount'; var rvs=[].slice.call(document.querySelectorAll(SEL)).filter(function(el){return !el.closest('.vbar')}); var byParent=new Map(); rvs.forEach(function(el){ var n=byParent.get(el.parentElement)||0; byParent.set(el.parentElement,n+1); el.classList.add('rv'); el.style.transitionDelay=((n%8)*70)+'ms'; }); var ro=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } }); },{threshold:.12,rootMargin:'0px 0px -5% 0px'}); rvs.forEach(function(el){ ro.observe(el); }); var chk=function(){ rvs.forEach(function(el){ if(el.classList.contains('in')) return; var r=el.getBoundingClientRect(); if(r.top<window.innerHeight*.95&&r.bottom>0) el.classList.add('in'); }); }; setTimeout(chk,80); var tk=false; window.addEventListener('scroll',function(){ if(tk) return; tk=true; requestAnimationFrame(function(){ chk(); tk=false; }); },{passive:true}); }
@@ -483,7 +504,7 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
  var ld=document.getElementById('loader'); if(ld) setTimeout(function(){ld.classList.add('off')},2100);
  // --- datos grandes, suben despacio
  var fmt=function(n){return Math.round(n).toLocaleString('es-AR')};
- var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; var el=e.target, t=+el.dataset.count, b=el.querySelector('b'), pre=el.dataset.prefix||'', suf=el.dataset.suffix||''; var t0=performance.now(); (function tick(now){ var k=Math.min(1,(now-t0)/3200); var v=t*(1-Math.pow(1-k,3)); b.textContent=pre+fmt(v)+suf; if(k<1) requestAnimationFrame(tick); })(t0); io.unobserve(el); }); },{threshold:.5});
+ var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; var el=e.target, t=+el.dataset.count, b=el.querySelector('b'), pre=el.dataset.prefix||'', suf=el.dataset.suffix||''; var t0=performance.now(); (function tick(now){ var k=Math.max(0,Math.min(1,(now-t0)/3200)); var v=t*(1-Math.pow(1-k,3)); b.textContent=pre+fmt(v)+suf; if(k<1) requestAnimationFrame(tick); })(t0); io.unobserve(el); }); },{threshold:.5});
  document.querySelectorAll('[data-count]').forEach(function(el){io.observe(el)});
  // --- historia contada con scroll
  var steps=[].slice.call(document.querySelectorAll('.step'));
@@ -492,6 +513,10 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
  document.querySelectorAll('.pv').forEach(function(c){ c.addEventListener('click',function(e){ if(matchMedia('(hover:none)').matches){ e.preventDefault(); c.classList.toggle('flip'); } }); });
  // --- convenios: carrusel con flechas y avance automático
  var trs=[].slice.call(document.querySelectorAll('[data-cv-track]')); if(trs.length){ var vis=function(){ return trs.filter(function(x){return x.offsetParent!==null})[0]; }; var step=function(tr){ var it=tr.querySelector('.cv__it'); return it?it.getBoundingClientRect().width+20:400; }; document.querySelectorAll('[data-cv]').forEach(function(b){ b.addEventListener('click',function(){ var tr=vis(); if(tr) tr.scrollBy({left:step(tr)*(+b.dataset.cv),behavior:'smooth'}); }); }); var hov=false; trs.forEach(function(tr){ tr.addEventListener('pointerenter',function(){hov=true}); tr.addEventListener('pointerleave',function(){hov=false}); }); setInterval(function(){ var tr=vis(); if(!tr||hov) return; if(tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4) tr.scrollTo({left:0,behavior:'smooth'}); else tr.scrollBy({left:step(tr),behavior:'smooth'}); },6000); }
+ // --- lo que estamos haciendo: tarjetas con recorrido adentro
+ var css=[].slice.call(document.querySelectorAll('[data-cs]')); if(css.length){ var csPaint=function(){ css.forEach(function(sec){ var r=sec.getBoundingClientRect(); var rec=r.height-window.innerHeight; var p=rec<=0?0:Math.max(0,Math.min(1,-r.top/rec)); var steps=sec.querySelectorAll('.cs__step'); var n=steps.length; var idx=Math.min(n-1,Math.floor(p*n*0.999)); steps.forEach(function(s,i){s.classList.toggle('on',i===idx)}); var phs=sec.querySelectorAll('[data-cs-ph]'); phs.forEach(function(ph,i){ph.classList.toggle('on',i===Math.min(phs.length-1,idx))}); sec.querySelectorAll('.cs__dots i').forEach(function(d,i){d.classList.toggle('on',i===idx)}); }); }; window.addEventListener('scroll',csPaint,{passive:true}); window.addEventListener('resize',csPaint); csPaint(); }
+ // --- alianzas: banner que pasa solo
+ var al=document.querySelector('[data-al]'); if(al){ var sl=[].slice.call(al.querySelectorAll('[data-al-slide]')), dots=[].slice.call(al.querySelectorAll('[data-al-dots] i')), cur=0, tm=null; var go=function(i){ cur=(i+sl.length)%sl.length; sl.forEach(function(s,k){s.classList.toggle('on',k===cur)}); dots.forEach(function(d,k){d.classList.toggle('on',k===cur)}); }; var arm=function(){ clearInterval(tm); tm=setInterval(function(){go(cur+1)},6000); }; dots.forEach(function(d,k){ d.addEventListener('click',function(){ go(k); arm(); }); }); arm(); }
  // --- línea de tiempo
  var tl=document.querySelector('.tl'); if(tl){ var its=[].slice.call(tl.querySelectorAll('.tl__it')); var near=function(){ var r=tl.getBoundingClientRect(); its.forEach(function(it){ var b=it.getBoundingClientRect(); it.classList.toggle('near',b.left>r.left-40&&b.right<r.right+40); }); }; tl.addEventListener('scroll',near,{passive:true}); near(); }
  // --- mapa que se enciende, con ficha
@@ -500,9 +525,8 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
    var fichaEl=document.getElementById('ficha');
    var paint=function(el,c){ el.querySelectorAll('polygon,path').forEach(function(p){p.style.fill=c}); if(el.tagName==='polygon') el.style.fill=c; };
    var lit=els.filter(function(el){return !!D[el.id.slice(2)]}).map(function(el){var b=el.getBBox();return {el:el,y:b.y+b.height/2}}).sort(function(a,b){return a.y-b.y}); var lc=document.getElementById('lc');
-   var mo=new IntersectionObserver(function(es){es.forEach(function(e){ if(!e.isIntersecting) return; lit.forEach(function(o,i){setTimeout(function(){ paint(o.el,'#25B4BD'); lc.textContent=(i+1)+' distritos encendidos'; },i*16)}); mo.disconnect(); });},{threshold:.15}); mo.observe(document.getElementById('mapwrap'));
-   window.__paintAll=function(now){ fichaEl.classList.toggle('ficha--card',!!now); };
-   if(h.getAttribute('data-mapa')==='clasico') window.__paintAll(true);
+   var mo=new IntersectionObserver(function(es){es.forEach(function(e){ if(!e.isIntersecting) return; lit.forEach(function(o,i){setTimeout(function(){ paint(o.el,'#25B4BD'); lc.textContent=(i+1)+' distritos encendidos'; },i*16)}); mo.disconnect(); });},{threshold:.15}); mo.observe(document.getElementById('mapwrap')); if(h.getAttribute('data-mapa')!=='si'){ /* apagado: se enciende solo si se muestra */ }
+   window.__lightMap=function(){ lit.forEach(function(o,i){setTimeout(function(){ paint(o.el,'#25B4BD'); lc.textContent=(i+1)+' distritos encendidos'; },i*16)}); };
    var sel=null;
    els.forEach(function(el){ var slug=el.id.slice(2); if(!D[slug]) return; el.classList.add('has'); el.addEventListener('click',function(){ var d=D[slug]; if(sel) sel.classList.remove('sel'); sel=el; el.classList.add('sel'); fichaEl.querySelector('h3').textContent=d.name; fichaEl.querySelector('small').textContent=d.programs.length+(d.programs.length===1?' programa':' programas'); fichaEl.querySelector('ul').innerHTML=d.programs.map(function(p){return '<li><b>'+p.name+'</b><span>'+p.desc+'</span></li>'}).join(''); var ph=fichaEl.querySelector('.ficha__ph'); if(d.img){ph.style.display='';ph.querySelector('img').src=d.img;} else ph.style.display='none'; fichaEl.classList.add('on'); }); });
  }
