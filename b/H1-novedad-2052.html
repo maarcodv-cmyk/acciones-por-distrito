@@ -35,7 +35,7 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .btn.ghost{color:var(--i)}
 .sec{position:relative;padding:96px 0;overflow:clip;background:var(--g0)}
 .sec--alt{background:var(--g1)}.sec--deep{background:var(--g2)}
 .sec .wrap{position:relative;z-index:1}
-:is(.pbg,.cst__vp)::after,.cst__vp::before{content:"";position:absolute;right:-18vmax;top:-12vmax;width:80vmax;height:56vmax;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 42'><path d='M3.1,39.4l19.3-12.2c4.3-2.7,8.6-0.6,8.6,4.2v14.2c0,1.6,1.1,2.8,2.9,2.8h3.7c12,0,22.4-8.7,22.4-23.5C59.9,9.6,47.9,0,33.8,0H4C1.9,0,0,1.9,0,4v34.1C0,39.5,1.8,40.2,3.1,39.4' fill='rgba(37,180,189,0.10)'/></svg>") no-repeat;background-size:contain;pointer-events:none;transform:rotate(-8deg);z-index:0}
+.pbg::after,.cst__vp::before{content:"";position:absolute;right:-18vmax;top:-12vmax;width:80vmax;height:56vmax;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 42'><path d='M3.1,39.4l19.3-12.2c4.3-2.7,8.6-0.6,8.6,4.2v14.2c0,1.6,1.1,2.8,2.9,2.8h3.7c12,0,22.4-8.7,22.4-23.5C59.9,9.6,47.9,0,33.8,0H4C1.9,0,0,1.9,0,4v34.1C0,39.5,1.8,40.2,3.1,39.4' fill='rgba(37,180,189,0.10)'/></svg>") no-repeat;background-size:contain;pointer-events:none;transform:rotate(-8deg);z-index:0}
 .pbg--left::after{right:auto;left:-22vmax;top:auto;bottom:-16vmax;transform:rotate(8deg) scaleX(-1)}
 .pline::before{content:"";position:absolute;left:-8vmax;top:-6vmax;width:44vmax;height:31vmax;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-1 -1 62 44'><path d='M3.1,39.4l19.3-12.2c4.3-2.7,8.6-0.6,8.6,4.2v14.2c0,1.6,1.1,2.8,2.9,2.8h3.7c12,0,22.4-8.7,22.4-23.5C59.9,9.6,47.9,0,33.8,0H4C1.9,0,0,1.9,0,4v34.1C0,39.5,1.8,40.2,3.1,39.4' fill='none' stroke='rgba(127,227,232,0.22)' stroke-width='.6'/></svg>") no-repeat;background-size:contain;pointer-events:none;z-index:0}
 html[data-fondo="liso"] .pbg::after,html[data-fondo="liso"] .pline::before,html[data-fondo="silueta"] .pline::before,html[data-fondo="bloques"] .pbg::after,html[data-fondo="bloques"] .pline::before{display:none}
@@ -246,14 +246,14 @@ html[data-datos="liso"] .datos__bg{display:none}
 .sf .step{color:#fff}.sf .step b{color:#B6F36F}.sf .step p{color:#DDEFE3}
 .cs{position:relative;height:calc(var(--n) * 55vh + 100vh)}
 .cst{position:relative;height:calc(var(--m) * var(--n) * 55vh + (var(--m) - 1) * 60vh + 100vh)}
-.cst__vp{position:sticky;top:0;height:100vh;overflow:clip;background:var(--g1)}
+.cst__vp{position:sticky;top:0;height:100vh;overflow:clip;background:var(--g1);isolation:isolate;z-index:1}
 .cst__vp .wrap{position:relative;z-index:1;height:100%;padding-top:42px;box-sizing:border-box}
 .cst__track{display:flex;flex-direction:column;gap:42px;will-change:transform}
 .cst__vp::before{right:auto;left:-22vmax;top:auto;bottom:-16vmax;transform:rotate(8deg) scaleX(-1)}
 .cs__vp .wrap{width:100%}
 .cs__card{position:relative;flex:none;height:calc(100vh - 84px);min-height:480px;border-radius:var(--r);overflow:hidden;background:var(--g2);color:#fff;box-shadow:0 20px 60px rgba(11,42,31,.18)}
 .cs__card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s}.cs__card img.on{opacity:1}
-.cs__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.66) 0%,rgba(11,42,31,.22) 38%,rgba(11,42,31,0) 58%),linear-gradient(180deg,rgba(11,42,31,.45) 0%,rgba(11,42,31,0) 30%)}
+.cs__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.78) 0%,rgba(11,42,31,.34) 38%,rgba(11,42,31,0) 60%),linear-gradient(180deg,rgba(11,42,31,.45) 0%,rgba(11,42,31,0) 30%)}
 .cs__ttl{position:absolute;left:40px;right:40px;top:32px;z-index:2;color:#fff;font-weight:900;font-size:clamp(26px,2.6vw,40px);letter-spacing:-.03em;line-height:1;text-shadow:0 2px 14px rgba(0,0,0,.35)}
 .cs__txt{position:absolute;left:40px;right:40px;bottom:36px;max-width:720px;display:grid;grid-template-columns:1fr;justify-items:start}.cs__txt .eyebrow{grid-row:1}.cs__txt .btn{grid-row:3}
 .cs__txt .eyebrow{color:#9FE6EA}
@@ -311,7 +311,7 @@ html[data-letras="oscurecer"] .cs__shade,html[data-letras="oscurecer"] .al__shad
 html[data-convenios="marquee"] .cv__nav,html[data-convenios="banner"] .cv__nav{display:none}
 .al{position:relative;z-index:1;height:min(calc(100vh - 82px),960px);min-height:560px;overflow:hidden;background:var(--g2);color:#fff;width:100%}
 .al__slide{position:absolute;inset:0;opacity:0;transition:opacity 1s}.al__slide.on{opacity:1}.al__slide img{width:100%;height:100%;object-fit:cover;transition:transform 7s linear}.al__slide.on img{transform:scale(1.04)}
-.al__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.62) 0%,rgba(11,42,31,.2) 40%,rgba(11,42,31,0) 65%)}
+.al__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,42,31,.76) 0%,rgba(11,42,31,.34) 40%,rgba(11,42,31,0) 66%)}
 .al__txt{position:absolute;left:max(96px,calc(50% - 604px));right:96px;bottom:64px;max-width:680px}
 .al__arr{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(11,42,31,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;cursor:pointer;display:grid;place-items:center;padding:0;transition:background .3s}.al__arr svg{display:block}.al__arr:hover{background:rgba(11,42,31,.65)}.al__arr--l{left:24px}.al__arr--r{right:24px}.al__txt .eyebrow{color:#9FE6EA}.al__who{font-size:clamp(22px,2.4vw,34px);font-weight:800;letter-spacing:-.02em;margin-top:10px;color:#fff}
 html[data-altitulo="arriba"] [data-alt-d]{display:none}html[data-altitulo="dentro"] [data-alt-a]{display:none}html[data-altitulo="dentro"] [data-alhead]{display:none}html[data-altitulo="dentro"] #convenios{padding-top:0}
@@ -423,7 +423,7 @@ html[data-bar="0"] body{margin-right:0}html[data-bar="0"] header{right:0}html[da
  .tl{margin:0 -18px}.ter{grid-template-columns:1fr;gap:28px}
  footer .wrap{grid-template-columns:1fr 1fr;gap:26px}footer .bot{flex-direction:column;gap:6px}}
 
-html:is([data-tono="claro"],[data-tono="blanco"]) :is(.pbg,.cst__vp)::after,html:is([data-tono="claro"],[data-tono="blanco"]) .cst__vp::before{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 42'><path d='M3.1,39.4l19.3-12.2c4.3-2.7,8.6-0.6,8.6,4.2v14.2c0,1.6,1.1,2.8,2.9,2.8h3.7c12,0,22.4-8.7,22.4-23.5C59.9,9.6,47.9,0,33.8,0H4C1.9,0,0,1.9,0,4v34.1C0,39.5,1.8,40.2,3.1,39.4' fill='rgba(39,157,46,0.09)'/></svg>")}
+html:is([data-tono="claro"],[data-tono="blanco"]) .pbg::after,html:is([data-tono="claro"],[data-tono="blanco"]) .cst__vp::before{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 42'><path d='M3.1,39.4l19.3-12.2c4.3-2.7,8.6-0.6,8.6,4.2v14.2c0,1.6,1.1,2.8,2.9,2.8h3.7c12,0,22.4-8.7,22.4-23.5C59.9,9.6,47.9,0,33.8,0H4C1.9,0,0,1.9,0,4v34.1C0,39.5,1.8,40.2,3.1,39.4' fill='rgba(39,157,46,0.09)'/></svg>")}
 html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-1 -1 62 44'><path d='M3.1,39.4l19.3-12.2c4.3-2.7,8.6-0.6,8.6,4.2v14.2c0,1.6,1.1,2.8,2.9,2.8h3.7c12,0,22.4-8.7,22.4-23.5C59.9,9.6,47.9,0,33.8,0H4C1.9,0,0,1.9,0,4v34.1C0,39.5,1.8,40.2,3.1,39.4' fill='none' stroke='rgba(39,157,46,0.25)' stroke-width='.6'/></svg>")}
 
 .phero{position:relative;padding:150px 0 70px;overflow:clip}.phero .wrap{position:relative;z-index:1}
@@ -484,13 +484,8 @@ html:is([data-tono="claro"],[data-tono="blanco"]) .pline::before{background-imag
 </div></footer>
 <div class="social"><a class="social__wa" href="https://wa.me/NUMERO_PENDIENTE" aria-label="WhatsApp" title="Falta el número de WhatsApp de la Fundación"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.3.8 3.1.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a><a class="social__ig" href="https://www.instagram.com/fundacion.banco.provincia/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a></div>
 <button class="vpill" id="vpill" type="button">Opciones del boceto</button>
-<div class="vbar" id="vbar"><div class="vbar__h"><b>Lo que queda por decidir</b><span>Lo demás ya está definido por la Fundación</span><button type="button" data-close aria-label="Ocultar" title="Ocultar">×</button></div>
-<div class="vbar__g"><span>Letras sobre las fotos</span><div class="vbar__b" data-k="letras"><button data-val="sombra">Con sombra, foto clara</button><button data-val="relieve">Con relieve, foto más clara</button><button data-val="oscurecer">Foto oscurecida (como antes)</button></div></div>
-<div class="vbar__g"><span>Zócalo de logos en alianzas</span><div class="vbar__b" data-k="banda"><button data-val="si">Con zócalo</button><button data-val="no">Sin zócalo</button></div></div>
-<div class="vbar__g"><span>Secciones apagadas (en WordPress se prenden desde el panel)</span><div class="vbar__b" data-k="linea"><button data-val="no">Línea de tiempo apagada</button><button data-val="si">Mostrar línea de tiempo</button></div><div class="vbar__b" data-k="mapa" style="margin-top:5px"><button data-val="no">Mapa apagado</button><button data-val="si">Mostrar mapa</button></div></div>
-<div class="vbar__g"><span>Dónde va el turquesa (con el relieve)</span><div class="vbar__b" data-k="turquesa"><button data-val="programas">En lo que hacemos</button><button data-val="novedades">En novedades</button><button data-val="alianzas">En alianzas (como estaba)</button></div></div>
-<div class="vbar__g"><span>Título de alianzas</span><div class="vbar__b" data-k="altitulo"><button data-val="dentro">Adentro del banner (propuesta)</button><button data-val="arriba">Arriba del banner, como estaba</button></div></div>
-<div class="vbar__g"><span>Modo</span><div class="vbar__b" data-k="tono"><button data-val="blanco">Día (el elegido)</button><button data-val="oscuro">Noche</button></div></div>
+<div class="vbar" id="vbar"><div class="vbar__h"><b>Lo único que queda por decidir</b><span>Todo lo demás ya está definido</span><button type="button" data-close aria-label="Ocultar" title="Ocultar">×</button></div>
+<div class="vbar__g"><span>Dónde va el turquesa (con el relieve)</span><div class="vbar__b" data-k="turquesa"><button data-val="programas">En lo que hacemos</button><button data-val="novedades">En novedades</button><button data-val="alianzas">En alianzas</button></div></div>
 </div>
 <script>
 (function(){
